@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy-conf.json",
     "build": "ng build",
+    "postbuild": "npm run deploy",
+    "predeploy": "rimraf ../server/src/main/resources/static && mkdirp ../server/src/main/resources/static",
+    "deploy": "copyfiles -f dist/frontend/** ../server/src/main/resources/static",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -20,7 +23,11 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },

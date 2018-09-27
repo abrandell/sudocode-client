@@ -1,0 +1,23 @@
+//$dark: rgb(25, 23, 22);
+$dark: #1c2331;
+$background-light: rgba(255, 251, 254, 1);
+$blue: rgb(62, 80, 91);
+$primary: $blue;
+$primary-hover: rgba(99, 159, 171, 1);
+$light-gray-line-border: #e6e6e6 2px solid;
+$bg-gray: #e6e6e6;
+$font-family-primary: Montserrat, sans-serif;
+$font-family-secondary: "Valera Round", sans-serif;
+
+$colors: (
+  primary: $primary,
+  hover: $primary-hover,
+  dark: $dark,
+  bg-light: $background-light,
+  primary-hover: $primary-hover,
+  bg-gray: $bg-gray
+);
+
+@function color($color) {
+  @return map-get($colors, $color)
+}

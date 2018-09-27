@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+@import "_variables.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~font-awesome/css/font-awesome.css";
+html {
+  width: 100vw;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.375em;
+  color: $dark;
+
+  body {
+    min-height: 100%;
+    margin: 0;
+    font: 500 1.2rem/1.5 "Valera Round", sans-serif;
+    background-color: color(bg-gray);
+    p {
+      line-height: 2;
+    }
+
+    nav {
+      font-family: Montserrat, sans-serif;
+    }
+
+  }
+}
+.max-width-wrapper {
+  max-width: 1350px;
+
+  .page-content {
+    background-color: color(bg-light);
+  }
+}
+.page-content {
+  margin-left: auto;
+  margin-right: auto;
+  //height: 100vh;
+  position: absolute;
+  padding-right: 5rem;
+  padding-left: 5rem;
+}
+
+// MEDIA QUERIES
+
+@media only screen and (min-width: 360px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+select {
+  cursor: pointer;
+  height: 1.4375rem;
+  margin: 0 0 1rem;
+  padding: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #495057;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+  background-origin: content-box;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 9px 6px;
+  padding-right: 1.5rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  #difficulty {
+    background-position: right 0 center;
+  }
+}
