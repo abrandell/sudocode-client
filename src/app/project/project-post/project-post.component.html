@@ -1,0 +1,37 @@
+<div class="container-fluid max-width-wrapper page-content">
+  <app-header [headerText]="'Post new project idea'"></app-header>
+
+  <form (ngSubmit)="submit()" #projectForm="ngForm">
+    {{diagnostic}}
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title"
+               required minlength="5" maxlength="30"
+               [(ngModel)]="model.title" name="title"
+               #title="ngModel">
+        <div [hidden]="title.valid || title.pristine"
+             class="alert alert-danger">Title must be 5-30 characters long.</div>
+      </div>
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select class="form-control" id="difficulty" required
+                [(ngModel)]="model.difficulty" name="difficulty">
+          <option *ngFor="let diff of difficulty" [value]="diff">{{diff}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" class="form-control" id="description"
+                  required minlength="8"
+                  [(ngModel)]="model.description" name="description"
+                  #description="ngModel" rows="3"></textarea>
+        <div [hidden]="description.valid || description.pristine"
+             class="alert alert-danger">Description must be at least 8 characters long.</div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary clickable"
+                [disabled]="!projectForm.form.valid">submit</button>
+      </div>
+  </form>
+</div>

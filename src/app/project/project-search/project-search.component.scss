@@ -1,0 +1,46 @@
+@import "~src/variables";
+
+
+$translucent-form-overlay-max-width: 300px;
+
+.translucent-form-overlay {
+  max-width: $translucent-form-overlay-max-width;
+  position: relative;
+  border-top: $dark 5px solid;
+  padding: 1em 1em 1em;
+  margin-right: 5rem;
+
+  @media screen and (max-width: 850px){
+    display: none;
+  }
+  // workaround 6.3.0 bug
+  .columns.row {
+    display: inline-grid;
+  }
+
+  h4, label {
+    color: $dark;
+  }
+  input, select {
+    color: gray;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+  }
+
+  select {
+    background-position: right;
+  }
+  input::placeholder {
+    color: gray;
+  }
+
+  .input-elevated{
+    line-height: 1.5;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+    border-radius: 5px;
+  }
+}
+
+label {
+  font-size: 1rem !important;
+}

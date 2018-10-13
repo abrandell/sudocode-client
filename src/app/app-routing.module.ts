@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ProjectListComponent} from './project/project-list/project-list.component';
-import {P} from '@angular/core/src/render3';
+import {ProjectPostComponent} from './project/project-post/project-post.component';
+import {AboutComponent} from './about/about.component';
+import {ProjectDetailComponent} from './project/project-detail/project-detail.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,21 @@ const routes: Routes = [
     path: 'projects',
     component: ProjectListComponent,
     data: {title: 'Projects'}
+  },
+  {
+    path: 'projects/post',
+    component: ProjectPostComponent,
+    data: {title: 'New Project'}
+  },
+  {
+    path: 'projects/:id',
+    component: ProjectDetailComponent,
+    data: {title: 'Project Details'}
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    data: {title: 'About'}
   },
   {
     path: '**',

@@ -1,0 +1,26 @@
+<div class="container translucent-form-overlay">
+  <form class="form-horizontal" (ngSubmit)="filterProjects()" #searchForm="ngForm">
+    <h5>Filter Projects</h5>
+    <div class="form-group">
+      <label for="title" class="col-form-label">Title</label>
+      <input type="text" class="form-control input-elevated" placeholder="Title contains..." id="title"
+             [(ngModel)]="searchedQuery.title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="difficulty" class="col-form-label">Difficulty</label>
+      <select class="form-control" name="difficulty" id="difficulty"
+              [(ngModel)]="searchedQuery.difficulty">
+        <option value='' selected>All</option>
+        <option *ngFor="let diff of difficulty" [value]="diff">{{diff}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-form-label">Description</label>
+      <textarea type="text" class="form-control input-elevated" placeholder="Description" id="description"
+                [(ngModel)]="searchedQuery.description" name="description" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary clickable">
+      Filter
+    </button>
+  </form>
+</div>

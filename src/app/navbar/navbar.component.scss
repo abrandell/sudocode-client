@@ -1,0 +1,61 @@
+@import "~src/variables";
+
+.navbar {
+  background-color: color(dark) !important;
+  font-size: .9rem;
+  font-family: Montserrat, sans-serif;
+  min-height: 56px;
+  padding-bottom: 0;
+  padding-top: 0;
+  //margin-bottom: 1em;
+  box-sizing: border-box;
+  box-shadow: 0 5px 21px -11px rgba(31, 31, 33, 0.62);
+  border-top: 4px solid color(primary-hover);
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .container {
+    width: 88vw;
+    min-height: 80px;
+
+    .nav-link {
+      text-transform: uppercase;
+      //border: 5px solid $dark;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      //box-sizing: border-box;
+      //-moz-box-sizing: border-box;
+      //-webkit-box-sizing: border-box;
+      cursor: pointer;
+      color: rgba(255, 251, 254, .7);
+
+      &:hover {
+        color: white;
+      }
+    }
+    .active {
+      border-bottom: 2px solid color(primary-hover);
+      color: white;
+      //background-color: $primary-hover;
+
+
+    }
+  }
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.login {
+  padding-right: 1rem;
+  color: #f1f1f1;
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+}

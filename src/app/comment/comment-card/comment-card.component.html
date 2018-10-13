@@ -1,0 +1,22 @@
+<div class="comment-card container-fluid" style="margin-bottom: 1.2rem">
+  <div *ngIf="auth.currentUser?.id == comment?.author?.id"
+       class="author-buttons btn-group-sm">
+    <button id="edit" class="btn btn-sm btn-outline-secondary">
+      <i class="fa fa-pencil"></i> Edit
+    </button>
+    <button id="delete" class="btn btn-sm btn-danger" (click)="deleteComment()">
+      <i class="fa fa-trash-o"></i> Delete
+    </button>
+  </div>
+  <div class="header">
+    <img class="avatar" src="{{comment?.author?.avatar_url}}">
+    <div class="metadata">
+      <a class="clickable login" href="https://github.com/{{comment?.author?.login}}">
+        <h6>{{comment?.author?.login}}</h6>
+      </a>
+      <div class="date">{{comment?.date_posted | date: 'MMM. d, y'}}</div>
+    </div>
+  </div>
+  <p class="comment-body">{{comment?.body}}</p>
+</div>
+<hr class="my-2">

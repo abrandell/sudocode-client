@@ -1,5 +1,7 @@
 //$dark: rgb(25, 23, 22);
-$dark: #1c2331;
+//@import url('https://fonts.googleapis.com/css?family=Montserrat|Varela+Round');
+
+$dark: rgb(28, 35, 49);
 $background-light: rgba(255, 251, 254, 1);
 $blue: rgb(62, 80, 91);
 $primary: $blue;
@@ -21,3 +23,8 @@ $colors: (
 @function color($color) {
   @return map-get($colors, $color)
 }
+
+$theme-colors: (
+  "primary": $primary,
+  "primary-hover": $primary-hover
+)

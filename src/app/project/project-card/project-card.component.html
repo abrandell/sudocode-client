@@ -1,0 +1,17 @@
+<div id="project-card" class="container">
+  <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
+    <span id="difficulty" class="badge font-weight-normal">({{project?.difficulty}})</span>
+    <span *ngIf="auth.authenticated && (project?.author === auth?.currentUser)" class="float-right">
+      <i class="fa-trash"></i>
+    </span>
+  </h4>
+  <!--<h6 id="difficulty">{{project.difficulty}}</h6>-->
+  <p class="text-body" id="description">{{project?.description}}</p>
+  <hr class="my-2">
+  <h6 id="metadata">
+      <span class="user-details">
+        <img src="{{project?.author.avatar_url}}" class="avatar">
+        {{project?.author.login}}</span>
+      <span class="date">{{project?.date_posted | date: 'MMM. d, y'}}</span>
+  </h6>
+</div>

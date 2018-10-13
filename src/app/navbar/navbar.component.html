@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-sm navbar-dark">
+  <div id="inner-nav" class="container max-width-wrapper">
+    <a class="navbar-brand" routerLink="/">(sudoCode);</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <div class="navbar-expand">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</a>
+          <a class="nav-item nav-link" routerLinkActive="active"
+             routerLink="projects">Projects</a>
+          <a class="nav-item nav-link" routerLinkActive="active"
+             routerLink="#">Contact</a>
+          <a class="nav-item nav-link" routerLinkActive="active"
+             routerLink="about">About</a>
+        </div>
+      </div>
+    </div>
+    <div class="mavbar-expand ml-auto">
+      <div class="navbar-nav" *ngIf="!auth.authenticated">
+        <a class="nav-item nav-link" href="http://localhost:8080/oauth2/authorization/github">
+          <i class="fa fa-github fa-lg"></i> <span> Login</span>
+        </a>
+      </div>
+      <li class="nav-item dropdown" *ngIf="auth.authenticated">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <span class="login">{{auth.currentUser?.login}} </span>
+          <img src="{{auth.currentUser?.avatar_url}}" style="max-width: 40px; border-radius: 50px; padding: 0; margin: 0">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="auth.logout()" style="cursor: pointer">Logout</a>
+        </div>
+      </li>
+    </div>
+  </div>
+</nav>

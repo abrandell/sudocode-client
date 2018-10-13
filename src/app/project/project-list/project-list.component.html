@@ -1,0 +1,35 @@
+<div class="container-fluid max-width-wrapper page-content" >
+  <app-header [headerText]="'Find and share ideas for side projects.'"></app-header>
+  <div class="container-fluid">
+    <app-project-search></app-project-search>
+
+    <ul class="project-list" *ngIf="projectPage" [@listStagger]="projectPage">
+      <div class="list-info container">
+        <h6 class="result-amount">{{projectPage?.total_elements}} project(s)</h6>
+        <button id="post-new" [disabled]="!auth.authenticated"
+                class="post-button btn btn-primary btn-sm"
+                (click)="postForm()">
+          New
+        </button>
+        <h6>
+          <select id="order-select" title="order">
+            <option value="new" (click)="ngOnInit()">newest</option>
+            <option value="old" (click)="sortByOldest()">oldest</option>
+          </select>
+        </h6>
+        <ul class="pagination-sm">
+          <li [class]="projectPage?.first ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" (click)="previousPage()">prev</a>
+          </li>
+          <li [class]="projectPage?.last ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" (click)="nextPage()">next</a>
+          </li>
+        </ul>
+      </div>
+      <li *ngFor="let project of projectPage?.content">
+        <app-project-card [project]="project"></app-project-card>
+      </li>
+    </ul>
+
+  </div>
+</div>

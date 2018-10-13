@@ -1,0 +1,107 @@
+@import "~src/_variables.scss";
+
+#project-details {
+  grid-template-rows: repeat(2, auto);
+
+  #details-header {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+
+    .title {
+      font-family: $font-family-primary;
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .date {
+      justify-self: end;
+    }
+  }
+
+  .metadata {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+
+    .difficulty {
+      font-size: 1rem;
+      color: gray;
+      font-family: $font-family-secondary;
+    }
+
+    #user-info {
+      justify-self: end;
+
+      .author-avatar img {
+        max-height: 20px;
+        max-width: 20px;
+        border-radius: 50px;
+      }
+
+      .author-login {
+        padding-left: .3rem;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .project-description {
+    margin-top: 1.5rem;
+    white-space: pre-wrap;
+
+    .text {
+      font-size: 1rem;
+      word-wrap: break-word;
+    }
+  }
+
+  .author-buttons {
+    max-width: fit-content;
+    float: right;
+
+    #edit {
+    }
+
+    #delete {
+      margin-left: .5rem;
+    }
+  }
+}
+
+#comments {
+  font-family: $font-family-secondary;
+  font-size: 1rem;
+  padding-bottom: 5rem;
+
+  .comment-list-metadata {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+
+    .result-amount {
+      justify-self: start;
+    }
+
+    .sort-order {
+      margin: 0;
+      width: 6rem;
+      height: 1.3rem;
+      padding: 0;
+      justify-self: center;
+    }
+
+    .pagination-sm {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  .comment-post-form {
+    padding-top: 2rem;
+  }
+
+  .comment-list {
+    list-style-type: none;
+    padding: 0;
+  }
+}
+

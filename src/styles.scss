@@ -1,27 +1,30 @@
 @import "_variables.scss";
 @import "~bootstrap/scss/bootstrap.scss";
 @import "~font-awesome/css/font-awesome.css";
+
 html {
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
+  overflow-y: scroll;
   font-size: 16px;
   line-height: 1.375em;
   color: $dark;
 
-  body {
-    min-height: 100%;
-    margin: 0;
-    font: 500 1.2rem/1.5 "Valera Round", sans-serif;
-    background-color: color(bg-gray);
-    p {
-      line-height: 2;
-    }
+    body {
+      height: 100%;
+      margin: 0;
+      font: 500 1.2rem/1.5 "Valera Round", sans-serif;
+      background-color: color(bg-gray);
 
-    nav {
-      font-family: Montserrat, sans-serif;
-    }
+      p {
+        line-height: 2;
+      }
 
-  }
+      nav {
+        font-family: Montserrat, sans-serif;
+      }
+
+    }
 }
 .max-width-wrapper {
   max-width: 1350px;
@@ -33,10 +36,11 @@ html {
 .page-content {
   margin-left: auto;
   margin-right: auto;
-  //height: 100vh;
+  min-height: 100%;
   position: absolute;
   padding-right: 5rem;
   padding-left: 5rem;
+  padding-bottom: 50px;
 }
 
 // MEDIA QUERIES
@@ -96,5 +100,25 @@ select {
 
   #difficulty {
     background-position: right 0 center;
+  }
+}
+li {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.clickable {
+  color: $dark;
+
+  &:hover {
+    color: $primary-hover;
+    text-decoration: none;
+  }
+}
+.btn-primary {
+  color: $background-light;
+
+  &:hover {
+    color: $background-light;
   }
 }

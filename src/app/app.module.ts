@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import { ProjectListComponent } from './project/project-list/project-list.component';
 import { ProjectCardComponent } from './project/project-card/project-card.component';
 import { ProjectPostComponent } from './project/project-post/project-post.component';
@@ -12,6 +12,26 @@ import { ProjectSearchComponent } from './project/project-search/project-search.
 import { HeaderComponent } from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import {ProjectService} from './shared/project.service';
+import { AboutComponent } from './about/about.component';
+import {PrismModule} from '@ngx-prism/core';
+import {CommonModule} from '@angular/common';
+import { FooterComponent } from './footer/footer.component';
+import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
+import { CommentPostComponent } from './comment/comment-post/comment-post.component';
+import { CommentCardComponent } from './comment/comment-card/comment-card.component';
+
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -21,16 +41,24 @@ import {FormsModule} from '@angular/forms';
     ProjectCardComponent,
     ProjectPostComponent,
     ProjectSearchComponent,
-    HeaderComponent
+    HeaderComponent,
+    AboutComponent,
+    FooterComponent,
+    ProjectDetailComponent,
+    CommentPostComponent,
+    CommentCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    ProjectService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,4 +30,5 @@ export class AppComponent implements OnInit {
       mergeMap(route => route.data)).subscribe(
       event => this.titleService.setTitle(event['title'] + ' - sudoCode')
     );
+  }
 }

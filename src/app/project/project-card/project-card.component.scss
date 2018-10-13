@@ -1,0 +1,54 @@
+@import "~src/_variables.scss";
+
+#project-card {
+  border-radius: 5px;
+  margin-top: 4rem;
+
+  .title {
+    color: $dark;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+
+    &:hover {
+      color: $primary-hover;
+      cursor: pointer;
+    }
+  }
+
+  #description {
+    font-size: 1rem;
+    margin-left: .5rem;
+    word-wrap: break-spaces;
+    white-space: pre-wrap;
+
+  }
+
+  #metadata {
+    font-size: .9rem;
+    padding-top: .5rem;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+
+    .user-details {
+      justify-self: left;
+
+      .avatar {
+        max-height: 20px;
+        box-shadow: 0 0 .1rem black;
+        border-radius: 50px;
+      }
+    }
+
+    .date {
+      justify-self: right;
+    }
+  }
+
+  #difficulty {
+    color: gray;
+    padding-bottom: 1rem;
+  }
+}
+
+
+

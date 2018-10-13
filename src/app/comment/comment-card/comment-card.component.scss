@@ -1,0 +1,60 @@
+@import "~src/_variables.scss";
+
+.comment-card {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  .author-buttons {
+    float: right;
+
+    #edit {
+
+    }
+
+    #delete {
+      margin-left: .5rem;
+    }
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: min-content auto;
+
+    .avatar {
+      max-height: 50px;
+      max-width: 50px;
+      box-shadow: 0 3px .3rem black;
+      border-radius: 50px;
+    }
+
+    .metadata {
+      display: grid;
+      grid-template-rows: repeat(2, auto);
+
+      .login {
+        margin-left: 1rem;
+        font-size: 1rem;
+        margin-bottom: 0;
+
+      }
+
+      .date {
+        font-family: $font-family-secondary;
+        color: gray;
+        font-size: .9rem;
+        margin-left: 1rem;
+        margin-top: 0;
+
+      }
+    }
+  }
+  .comment-body {
+    margin-top: 1rem;
+    white-space: pre-wrap;
+    font-family: $font-family-secondary;
+    font-size: .95rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
