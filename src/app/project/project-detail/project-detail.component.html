@@ -53,4 +53,13 @@
         </ul>
     </div>
   </div>
+
+  <ul class="pagination-sm d-flex float-right" style="margin-right: 3rem">
+    <li [class]="comments?.first ? 'page-item disabled' : 'page-item'">
+      <a class="page-link" (click)="prevCommentPage()">prev</a>
+    </li>
+    <li [class]="comments?.last ? 'page-item disabled' : 'page-item'">
+      <a class="page-link" (click)="nextCommentPage()">next</a>
+    </li>
+  </ul>
 </div>
