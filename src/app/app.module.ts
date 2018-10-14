@@ -20,6 +20,9 @@ import { FooterComponent } from './footer/footer.component';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
 import { CommentPostComponent } from './comment/comment-post/comment-post.component';
 import { CommentCardComponent } from './comment/comment-card/comment-card.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserCardComponent } from './user/user-card/user-card.component';
+import {UserService} from './shared/user.service';
 
 
 @Injectable()
@@ -46,7 +49,9 @@ export class XhrInterceptor implements HttpInterceptor {
     FooterComponent,
     ProjectDetailComponent,
     CommentPostComponent,
-    CommentCardComponent
+    CommentCardComponent,
+    UserListComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,8 @@ export class XhrInterceptor implements HttpInterceptor {
     FormsModule,
   ],
   providers: [
-    ProjectService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
+    ProjectService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    UserService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
 
   ],
   bootstrap: [AppComponent]

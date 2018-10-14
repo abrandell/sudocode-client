@@ -1,0 +1,8 @@
+<div class="container-fluid max-width-wrapper page-content" >
+  <app-header [headerText]="'Users'"></app-header>
+  <ul class="user-list" *ngIf="users">
+    <li *ngFor="let user of users?.content">
+      <app-user-card [user]="user"></app-user-card>
+    </li>
+  </ul>
+</div>

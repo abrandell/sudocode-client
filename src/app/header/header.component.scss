@@ -3,5 +3,9 @@
 #header {
   margin-top: 3rem;
   margin-bottom: 3rem;
-  font-family: $font-family-primary;
+
+  h2 {
+    font-family: $font-family-primary;
+    font-weight: 600;
+  }
 }

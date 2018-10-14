@@ -4,6 +4,7 @@ import {ProjectListComponent} from './project/project-list/project-list.componen
 import {ProjectPostComponent} from './project/project-post/project-post.component';
 import {AboutComponent} from './about/about.component';
 import {ProjectDetailComponent} from './project/project-detail/project-detail.component';
+import {UserListComponent} from './user/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: 'projects/:id',
     component: ProjectDetailComponent,
     data: {title: 'Project Details'}
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
+    data: {title: 'Users'}
   },
   {
     path: 'about',

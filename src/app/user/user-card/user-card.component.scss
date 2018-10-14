@@ -1,0 +1,40 @@
+@import "~src/_variables.scss";
+
+#user-card {
+
+  #user-info {
+    display: grid;
+    grid-template-columns: min-content auto;
+
+    .avatar {
+      max-height:  100px;
+      max-width: 100px;
+      border-radius: 50px;
+      box-shadow: 0 3px .3rem black;
+    }
+
+    .metadata {
+      display: grid;
+      font-size: 1rem;
+      margin-left: 1rem;
+      grid-template-rows: repeat(3, min-content);
+
+      .login {
+        font-family: $font-family-primary !important;
+        font-size: 1.2rem;
+        color: $dark;
+      }
+
+      .hireable {
+        font-family: $font-family-secondary;
+        color: gray;
+      }
+
+      #user-icon-links {
+        margin-top: .5rem;
+      }
+    }
+  }
+
+
+}
