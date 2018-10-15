@@ -1,14 +1,16 @@
 @import "~src/_variables.scss";
 
 #user-card {
-
+max-width: fit-content;
+justify-self: center;
+margin-bottom: 3rem;
   #user-info {
     display: grid;
     grid-template-columns: min-content auto;
 
     .avatar {
-      max-height:  100px;
-      max-width: 100px;
+      max-height: 75px;
+      max-width: 75px;
       border-radius: 50px;
       box-shadow: 0 3px .3rem black;
     }
@@ -27,11 +29,13 @@
 
       .hireable {
         font-family: $font-family-secondary;
+        font-size: .95rem;
         color: gray;
       }
 
       #user-icon-links {
-        margin-top: .5rem;
+        font-size: .7rem;
+        margin-top: .3rem;
       }
     }
   }

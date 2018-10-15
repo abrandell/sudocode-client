@@ -1,0 +1,4 @@
+.user-list li {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}

@@ -35,11 +35,7 @@ import {SortOrder} from '../../shared/sort-order';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor(private projectService: ProjectService,
-              protected auth: AuthService,
-              private router: Router) { }
-
-  mockProjects = PROJECTS;
+  constructor(private projectService: ProjectService, protected auth: AuthService, private router: Router) {}
 
   projectPage: ProjectPage;
   public page: number;

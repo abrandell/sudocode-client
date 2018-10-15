@@ -14,8 +14,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {ProjectService} from './shared/project.service';
 import { AboutComponent } from './about/about.component';
-import {PrismModule} from '@ngx-prism/core';
-import {CommonModule} from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
 import { CommentPostComponent } from './comment/comment-post/comment-post.component';
