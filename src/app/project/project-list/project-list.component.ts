@@ -96,7 +96,7 @@ export class ProjectListComponent implements OnInit {
       );
   }
 
-  async postForm()  {
+  postForm()  {
     this.router.navigate(['projects', 'post'])
       .then(() => {});
   }

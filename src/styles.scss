@@ -3,15 +3,16 @@
 @import "~font-awesome/css/font-awesome.css";
 
 html {
-  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  display: block;
   font-size: 16px;
   line-height: 1.375em;
   color: $dark;
 
     body {
       height: 100%;
+      width: 100%;
       margin: 0;
       font: 500 1.2rem/1.5 "Valera Round", sans-serif;
       background-color: color(bg-gray);
@@ -29,19 +30,19 @@ html {
 .max-width-wrapper {
   max-width: 1350px;
 
+
   .page-content {
     background-color: color(bg-light);
+    margin-left: auto;
+    margin-right: auto;
+    position: static;
+    min-height: 100vh;
+    padding-right: 5rem;
+    padding-left: 5rem;
+    padding-bottom: 50px;
   }
 }
-.page-content {
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 100%;
-  position: absolute;
-  padding-right: 5rem;
-  padding-left: 5rem;
-  padding-bottom: 50px;
-}
+
 
 // MEDIA QUERIES
 

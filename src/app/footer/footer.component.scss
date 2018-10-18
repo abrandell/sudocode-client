@@ -1,20 +1,19 @@
 @import "~src/_variables";
 
 footer {
-  display: none;
   background-color: color(dark);
 
-  position: fixed;
+  position: static;
   bottom: 0;
 
-  width: 100%;
-  .max-width-wrapper {
-    color: $background-light;
+  // width: 100%;
+  // .max-width-wrapper {
+  //   color: $background-light;
 
-    #footer-content {
-      padding-top: 1rem;
-      font-family: $font-family-secondary;
-      font-size: 1rem;
-    }
-  }
+  //   #footer-content {
+  //     padding-top: 1rem;
+  //     font-family: $font-family-secondary;
+  //     font-size: 1rem;
+  //   }
+  // }
 }
