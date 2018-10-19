@@ -1,3 +1,4 @@
+import { IComment } from './../../shared/IComment';
 import { Component, OnInit } from '@angular/core';
 import {CommentCreation} from './comment-creation';
 import {AuthService} from '../../shared/auth.service';
@@ -29,15 +30,21 @@ export class CommentPostComponent implements OnInit {
     );
   }
 
-  protected submit(): void {
-    this.submitted = true;
+  public submit() {
+    let submittedComment: IComment;
+
     this.projectService.postComment(this.projectId, this.comment)
       .subscribe(
-      status => console.log(status),
+        data => submittedComment = data,
         err => console.log(err)
     );
 
     this.router.navigate(['projects', this.projectId]).then(() => {});
+
+    if (submittedComment) {
+      this.submitted = true;
+      return submittedComment;
+    }
   }
 
   get diagnostic(): string {
