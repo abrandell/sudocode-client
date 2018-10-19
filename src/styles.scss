@@ -5,7 +5,7 @@
 html {
   overflow-x: hidden;
   overflow-y: scroll;
-  display: block;
+  width: 100vw;
   font-size: 16px;
   line-height: 1.375em;
   color: $dark;
@@ -39,7 +39,7 @@ html {
     min-height: 100vh;
     padding-right: 5rem;
     padding-left: 5rem;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
   }
 }
 
