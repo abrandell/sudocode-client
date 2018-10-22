@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       console.log(params);
-      this.auth.authenticate(undefined);
+      this.auth.authenticate();
     });
   }
 

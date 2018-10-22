@@ -14,18 +14,18 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  public authenticate(callback) {
-    this.http.get<any>('/api/users/me')
-      .subscribe(data => {
-        this.authenticated = JSON.stringify(data).includes('login');
+  public authenticate() {
+    if (!this.authenticated) {
+      this.http.get<any>('/api/users/me')
+        .subscribe(data => {
+          this.authenticated = JSON.stringify(data).includes('login');
 
-        if (this.authenticated) {
-          this.currentUser = data;
-        }
+          if (this.authenticated) {
+            this.currentUser = data;
+          }
 
-        return callback && callback();
-      });
-
+        });
+    }
   }
 
   public logout(): Observable<any> {
