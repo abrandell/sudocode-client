@@ -28,8 +28,9 @@ export class AuthService {
 
   }
 
-  public logout(): void {
+  public logout(): Observable<any> {
     this.currentUser = null;
     this.authenticated = false;
+    return this.http.post('/api/users/logout', {});
   }
 }

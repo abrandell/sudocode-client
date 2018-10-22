@@ -1,4 +1,5 @@
 <div class="comment-card container-fluid" style="margin-bottom: 1.2rem">
+  <div *ngIf="comment != null">
   <div *ngIf="auth.currentUser?.id == comment?.author?.id"
        class="author-buttons btn-group-sm">
     <button id="edit" class="btn btn-sm btn-outline-secondary">
@@ -40,5 +41,6 @@
     </div>
   </div>
   <p class="comment-body">{{comment?.body}}</p>
+    <hr class="my-2">
+  </div>
 </div>
-<hr class="my-2">

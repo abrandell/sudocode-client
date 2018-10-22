@@ -32,5 +32,6 @@ export class CommentCardComponent implements OnInit {
         () => {},
         err => console.log(err)
       );
+    this.comment = null;
   }
 }

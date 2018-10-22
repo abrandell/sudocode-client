@@ -14,8 +14,6 @@
           <a class="nav-item nav-link" routerLinkActive="active"
              routerLink="users">Users</a>
           <a class="nav-item nav-link" routerLinkActive="active"
-             routerLink="#">Contact</a>
-          <a class="nav-item nav-link" routerLinkActive="active"
              routerLink="about">About</a>
         </div>
       </div>
@@ -33,7 +31,7 @@
           <img src="{{auth.currentUser?.avatar_url}}" style="max-width: 40px; border-radius: 50px; padding: 0; margin: 0">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" (click)="auth.logout()" style="cursor: pointer">Logout</a>
+          <a class="dropdown-item" (click)="logout()" style="cursor: pointer">Logout</a>
         </div>
       </li>
     </div>

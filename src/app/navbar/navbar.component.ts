@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
 import {ActivatedRoute, Params} from '@angular/router';
 
@@ -9,13 +9,22 @@ import {ActivatedRoute, Params} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, public auth: AuthService) { }
+  constructor(private activatedRoute: ActivatedRoute, public auth: AuthService) {
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       console.log(params);
       this.auth.authenticate(undefined);
     });
+  }
+
+  logout(): void {
+    this.auth.logout()
+      .subscribe(
+        status => console.log(status),
+        err => console.log(err)
+      );
   }
 
 }
