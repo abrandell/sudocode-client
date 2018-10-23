@@ -6,6 +6,7 @@ import {CommentPage} from '../../shared/comment-page';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {SortOrder} from '../../shared/sort-order';
 import {AuthService} from '../../shared/auth.service';
+import {ProjectListComponent} from '../project-list/project-list.component';
 
 
 @Component({
@@ -42,10 +43,10 @@ export class ProjectDetailComponent implements OnInit {
   private order: SortOrder;
   protected isAuthenticated: boolean;
 
-    constructor(private projectService: ProjectService,
-                private route: ActivatedRoute,
-                protected auth: AuthService,
-                private router: Router) {
+  constructor(private projectService: ProjectService,
+              private route: ActivatedRoute,
+              protected auth: AuthService,
+              private router: Router, private projectList: ProjectListComponent) {
 
     this.route.params.subscribe(
       params => this.projectId = params.id,
@@ -54,8 +55,9 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   isAuthor(): boolean {
-    if (this.auth.currentUser == null) { return false; }
-    if (this.project == null) { return false; }
+    if (this.auth.currentUser == null || this.project == null) {
+      return false;
+    }
 
     return this.auth.currentUser.id === this.project.author.id;
   }
@@ -63,12 +65,11 @@ export class ProjectDetailComponent implements OnInit {
   deleteProject(): void {
     if (this.isAuthor()) {
       this.projectService.deleteProject(this.projectId)
-        .subscribe(
-          status => console.log(status),
-          err => console.log(err)
-        );
-
-      this.router.navigate(['projects']).then(() => {});
+          .subscribe(
+            status => console.log(status),
+            err => console.log(err),
+            () => this.projectList.ngOnInit())
+          .add(() => this.router.navigate(['projects']));
     }
   }
 
@@ -90,10 +91,10 @@ export class ProjectDetailComponent implements OnInit {
 
   private fetchProject(): void {
     this.projectService.fetchById(this.projectId)
-      .subscribe(
-        data => this.project = data,
-        err => console.log(err)
-      );
+        .subscribe(
+          data => this.project = data,
+          err => console.log(err)
+        );
   }
 
   protected nextCommentPage(): void {
@@ -112,15 +113,15 @@ export class ProjectDetailComponent implements OnInit {
 
   private fetchComments(): void {
     this.projectService.fetchProjectComments(this.projectId, this.order, this.pageNum)
-      .subscribe(
-        data => this.comments = data,
-        err => console.log(err)
-      );
+        .subscribe(
+          data => this.comments = data,
+          err => console.log(err)
+        );
   }
 
 
   public refreshCommentList(): void {
-      this.sortByNewest();
+    this.sortByNewest();
   }
 
 

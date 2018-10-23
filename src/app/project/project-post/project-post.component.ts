@@ -33,9 +33,7 @@ export class ProjectPostComponent {
           status => console.log(status),
           err => console.log(err),
           () => this.projectList.ngOnInit())
-        .add(() => this.router.navigate(['projects'])
-    );
-
+        .add(() => this.router.navigate(['projects']));
   }
 
   get diagnostic(): string {
