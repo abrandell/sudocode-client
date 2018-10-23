@@ -60,7 +60,8 @@ export class XhrInterceptor implements HttpInterceptor {
   ],
   providers: [
     ProjectService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
-    UserService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
+    UserService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    ProjectListComponent
 
   ],
   bootstrap: [AppComponent]

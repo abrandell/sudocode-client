@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../shared/project.service';
 import {IProject} from '../IProject';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,6 +6,7 @@ import {CommentPage} from '../../shared/comment-page';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {SortOrder} from '../../shared/sort-order';
 import {AuthService} from '../../shared/auth.service';
+
 
 @Component({
   selector: 'app-project-detail',
@@ -41,10 +42,11 @@ export class ProjectDetailComponent implements OnInit {
   private order: SortOrder;
   protected isAuthenticated: boolean;
 
-  constructor(private projectService: ProjectService,
-              private route: ActivatedRoute,
-              protected auth: AuthService,
-              private router: Router) {
+    constructor(private projectService: ProjectService,
+                private route: ActivatedRoute,
+                protected auth: AuthService,
+                private router: Router) {
+
     this.route.params.subscribe(
       params => this.projectId = params.id,
       err => console.log(err)
@@ -114,6 +116,11 @@ export class ProjectDetailComponent implements OnInit {
         data => this.comments = data,
         err => console.log(err)
       );
+  }
+
+
+  public refreshCommentList(): void {
+      this.sortByNewest();
   }
 
 

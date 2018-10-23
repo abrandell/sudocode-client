@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {PROJECTS} from './mock-projects';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {ProjectPage} from '../../shared/project-page';
 import {ProjectService} from '../../shared/project.service';
@@ -109,4 +108,6 @@ export class ProjectListComponent implements OnInit {
           err => console.log(err)
         );
   }
+
+
 }

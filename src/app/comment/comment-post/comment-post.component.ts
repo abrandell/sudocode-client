@@ -1,9 +1,10 @@
 import { IComment } from './../../shared/IComment';
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CommentCreation} from './comment-creation';
 import {AuthService} from '../../shared/auth.service';
 import {ProjectService} from '../../shared/project.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ProjectDetailComponent} from '../../project/project-detail/project-detail.component';
 
 @Component({
   selector: 'app-comment-post',
@@ -19,9 +20,11 @@ export class CommentPostComponent implements OnInit {
   constructor(protected auth: AuthService,
               private projectService: ProjectService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private projectDetail: ProjectDetailComponent) {
     this.comment = new CommentCreation('');
   }
+
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -36,16 +39,13 @@ export class CommentPostComponent implements OnInit {
     this.projectService.postComment(this.projectId, this.comment)
       .subscribe(
         data => submittedComment = data,
-        err => console.log(err)
-    );
-
-    this.router.navigate(['projects', this.projectId]).then(() => {});
-
-    if (submittedComment) {
-      this.submitted = true;
-      return submittedComment;
-    }
+        err => console.log(err),
+        () => this.projectDetail.refreshCommentList());
   }
+
+
+
+
 
   get diagnostic(): string {
     return JSON.stringify(this.comment);

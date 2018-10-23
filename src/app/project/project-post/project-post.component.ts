@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectCreation} from '../project-search/project-creation';
 import {ProjectService} from '../../shared/project.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProjectListComponent} from '../project-list/project-list.component';
 
 @Component({
   selector: 'app-project-post',
@@ -20,25 +20,27 @@ export class ProjectPostComponent {
   ];
 
   model = new ProjectCreation('', '', '');
-  submitted = false;
+  submitted: boolean;
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private projectService: ProjectService,
+              private router: Router,
+              public projectList: ProjectListComponent) {
+  }
 
-  protected submit(): void {
-    this.submitted = true;
+  public submit(): void {
     this.projectService.post(this.model)
-      .subscribe(
-        status => console.log(status),
-          err => console.log(err)
-      );
+        .subscribe(
+          status => console.log(status),
+          err => console.log(err),
+          () => this.projectList.ngOnInit())
+        .add(() => this.router.navigate(['projects'])
+    );
 
-    this.router.navigateByUrl('/projects').then(() => {});
   }
 
   get diagnostic(): string {
     return JSON.stringify(this.model);
   }
-
 
 
 }
