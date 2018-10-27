@@ -6,6 +6,7 @@ html {
   overflow-x: hidden;
   overflow-y: scroll;
   width: 100vw;
+  height: 100vh;
   font-size: 16px;
   line-height: 1.375em;
   color: $dark;
@@ -13,6 +14,7 @@ html {
     body {
       height: 100%;
       width: 100%;
+      padding: 0;
       margin: 0;
       font: 500 1.2rem/1.5 "Valera Round", sans-serif;
       background-color: color(bg-gray);
@@ -23,25 +25,30 @@ html {
 
       nav {
         font-family: Montserrat, sans-serif;
+        height: 8vh !important;
+      }
+
+      #content {
+        .max-width-wrapper {
+          max-width: 1350px;
+
+
+          .page-content {
+            background-color: color(bg-light);
+            margin-left: auto;
+            margin-right: auto;
+            position: static;
+            min-height: 82vh !important;
+            padding-right: 5rem;
+            padding-left: 5rem;
+            padding-bottom: 100px;
+          }
+        }
       }
 
     }
 }
-.max-width-wrapper {
-  max-width: 1350px;
 
-
-  .page-content {
-    background-color: color(bg-light);
-    margin-left: auto;
-    margin-right: auto;
-    position: static;
-    min-height: 100vh;
-    padding-right: 5rem;
-    padding-left: 5rem;
-    padding-bottom: 100px;
-  }
-}
 
 
 // MEDIA QUERIES
