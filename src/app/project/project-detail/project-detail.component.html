@@ -2,11 +2,12 @@
   <app-header [headerText]="'Project Details'"></app-header>
   <div class="container-fluid">
     <div id="project-details" class="container">
-      <div id="details-header">
+      <div id="details-header" >
         <span class="title">{{project?.title}}</span>
         <span class="date">{{project?.date_posted | date: 'MMM. d, y'}}</span>
       </div>
-      <div class="metadata">
+      <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
+      <div *ngIf="!editing" class="metadata">
         <span class="difficulty">{{project?.difficulty}}</span>
         <span id="user-info">
           <span class="author-avatar">
@@ -16,50 +17,16 @@
         </span>
       </div>
       <div class="project-description container">
-        <p class="text">{{project?.description}}</p>
+        <p class="text" *ngIf="!editing">{{project?.description}}</p>
       </div>
-      <div class="author-buttons" *ngIf="isAuthor()" id="options">
-        <button id="edit" class="btn btn-sm btn-outline-secondary">
+      <div class="author-buttons" *ngIf="isAuthor() && !editing" id="options">
+        <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">
           <i class="fa fa-pencil"></i> Edit
         </button>
         <button id="delete" class="btn btn-sm btn-danger" (click)="deleteProject()">
           <i class="fa fa-trash"></i> Delete</button>
       </div>
     </div>
-    <div id="comments" class="container">
-      <div class="comment-post-form">
-        <hr class="my-2">
-        <app-comment-post></app-comment-post>
-      </div>
-      <div class="comment-list-metadata">
-        <div class="result-number">{{comments?.total_elements}} comment(s)</div>
-        <select class="sort-order" title="order">
-          <option value="new" (click)="sortByNewest()">newest</option>
-          <option value="old" (click)="sortByOldest()">oldest</option>
-        </select>
-        <ul class="pagination-sm">
-          <li [class]="comments?.first ? 'page-item disabled' : 'page-item'">
-            <a class="page-link" (click)="prevCommentPage()">prev</a>
-          </li>
-          <li [class]="comments?.last ? 'page-item disabled' : 'page-item'">
-            <a class="page-link" (click)="nextCommentPage()">next</a>
-          </li>
-        </ul>
-      </div>
-        <ul class="comment-list" [@listStagger]="comments">
-          <li *ngFor="let comment of comments?.content">
-            <app-comment-card [comment]="comment"></app-comment-card>
-          </li>
-        </ul>
-    </div>
+      <app-comment-list></app-comment-list>
   </div>
-
-  <ul class="pagination-sm d-flex float-right" style="margin-right: 3rem">
-    <li [class]="comments?.first ? 'page-item disabled' : 'page-item'">
-      <a class="page-link" (click)="prevCommentPage()">prev</a>
-    </li>
-    <li [class]="comments?.last ? 'page-item disabled' : 'page-item'">
-      <a class="page-link" (click)="nextCommentPage()">next</a>
-    </li>
-  </ul>
 </div>

@@ -13,26 +13,7 @@ import {ProjectListComponent} from '../project-list/project-list.component';
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
-  animations: [
-    trigger('listStagger', [
-      transition('* <=> *', [
-        query(
-          ':enter',
-          [
-            style({opacity: 0, transform: 'translateY(-15px)'}),
-            stagger(
-              '50ms',
-              animate(
-                '550ms ease-out',
-                style({opacity: 1, transform: 'translateY(0px)'})
-              )
-            )
-          ],
-          {optional: true}
-        ),
-      ])
-    ])
-  ]
+
 })
 export class ProjectDetailComponent implements OnInit {
 
@@ -42,6 +23,7 @@ export class ProjectDetailComponent implements OnInit {
   protected pageNum: number;
   private order: SortOrder;
   protected isAuthenticated: boolean;
+  editing: boolean;
 
   constructor(private projectService: ProjectService,
               private route: ActivatedRoute,
@@ -74,19 +56,15 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pageNum = 0;
     this.fetchProject();
-    this.sortByNewest();
   }
 
-  protected sortByOldest(): void {
-    this.order = SortOrder.ASC;
-    this.fetchComments();
+  edit() {
+    this.editing = true;
   }
 
-  protected sortByNewest(): void {
-    this.order = SortOrder.DESC;
-    this.fetchComments();
+  editProject() {
+
   }
 
   private fetchProject(): void {
@@ -97,32 +75,6 @@ export class ProjectDetailComponent implements OnInit {
         );
   }
 
-  protected nextCommentPage(): void {
-    if (!this.comments.last) {
-      this.pageNum++;
-      this.fetchComments();
-    }
-  }
-
-  protected prevCommentPage(): void {
-    if (!this.comments.first) {
-      this.pageNum--;
-      this.fetchComments();
-    }
-  }
-
-  private fetchComments(): void {
-    this.projectService.fetchProjectComments(this.projectId, this.order, this.pageNum)
-        .subscribe(
-          data => this.comments = data,
-          err => console.log(err)
-        );
-  }
-
-
-  public refreshCommentList(): void {
-    this.sortByNewest();
-  }
 
 
 }

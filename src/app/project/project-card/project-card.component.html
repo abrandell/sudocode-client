@@ -1,6 +1,7 @@
 <div id="project-card" class="container">
   <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
-    <span id="difficulty" class="badge font-weight-normal">({{project?.difficulty}})</span>
+    <span id="difficulty" class="badge font-weight-normal" [style.color]="setColor(project.difficulty)" >
+      ({{project?.difficulty}})</span>
     <span *ngIf="auth.authenticated && (project?.author === auth?.currentUser)" class="float-right">
       <i class="fa-trash"></i>
     </span>

@@ -13,7 +13,10 @@ export class ProjectCardComponent implements OnInit {
 
   @Input() project: IProject;
 
-  constructor(protected auth: AuthService, private router: Router) { }
+
+  constructor(protected auth: AuthService, private router: Router) {
+
+  }
 
   ngOnInit() {
   }
@@ -22,5 +25,18 @@ export class ProjectCardComponent implements OnInit {
     this.router.navigateByUrl(`/projects/${this.project.id}`);
   }
 
+  public setColor(text: string): string {
+    switch (text) {
+      case 'beginner': {
+        return 'green';
+      }
+      case 'intermediate': {
+        return 'blue';
+      }
+      case 'advanced': {
+        return 'red';
+      }
+    }
+  }
 
 }

@@ -65,6 +65,10 @@ export class ProjectService {
     // todo
   }
 
+  public updateProject(project: IProject): Observable<IProject> {
+    return this.http.put<IProject>(`${this.URL}/${project.id}`, project);
+  }
+
 
   // TODO remove the hardcoded sort
   public searchProjects(page: number, sortOrder: string, values: ProjectCreation): Observable<ProjectPage> {

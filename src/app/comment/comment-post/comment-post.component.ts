@@ -5,6 +5,7 @@ import {AuthService} from '../../shared/auth.service';
 import {ProjectService} from '../../shared/project.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectDetailComponent} from '../../project/project-detail/project-detail.component';
+import {CommentListComponent} from '../comment-list/comment-list.component';
 
 @Component({
   selector: 'app-comment-post',
@@ -21,7 +22,7 @@ export class CommentPostComponent implements OnInit {
               private projectService: ProjectService,
               private route: ActivatedRoute,
               private router: Router,
-              private projectDetail: ProjectDetailComponent) {
+              private commentList: CommentListComponent) {
     this.comment = new CommentCreation('');
   }
 
@@ -40,7 +41,7 @@ export class CommentPostComponent implements OnInit {
       .subscribe(
         data => submittedComment = data,
         err => console.log(err),
-        () => this.projectDetail.refreshCommentList());
+        () => this.commentList.refreshCommentList());
   }
 
 

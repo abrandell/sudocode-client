@@ -21,6 +21,8 @@ import { CommentCardComponent } from './comment/comment-card/comment-card.compon
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserCardComponent } from './user/user-card/user-card.component';
 import {UserService} from './shared/user.service';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { CommentListComponent } from './comment/comment-list/comment-list.component';
 
 
 @Injectable()
@@ -49,7 +51,9 @@ export class XhrInterceptor implements HttpInterceptor {
     CommentPostComponent,
     CommentCardComponent,
     UserListComponent,
-    UserCardComponent
+    UserCardComponent,
+    ProjectEditComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,
