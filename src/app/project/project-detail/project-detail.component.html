@@ -8,7 +8,7 @@
       </div>
       <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
       <div *ngIf="!editing" class="metadata">
-        <span class="difficulty">{{project?.difficulty}}</span>
+        <span class="difficulty" [style.color]="projectService.setColor(project?.difficulty)">{{project?.difficulty}}</span>
         <span id="user-info">
           <span class="author-avatar">
             <img src="{{project?.author?.avatar_url}}" alt="avatar">
@@ -23,10 +23,31 @@
         <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">
           <i class="fa fa-pencil"></i> Edit
         </button>
-        <button id="delete" class="btn btn-sm btn-danger" (click)="deleteProject()">
-          <i class="fa fa-trash"></i> Delete</button>
-      </div>
+        <button id="delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete-project">
+          <i class="fa fa-trash-o"></i> Delete
+        </button>
+
+        <div class="modal fade" id="confirm-delete-project" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                This cannot be undone.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteComment()" data-dismiss="modal">Delete Project</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
       <app-comment-list></app-comment-list>
   </div>
+</div>
 </div>

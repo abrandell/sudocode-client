@@ -36,7 +36,7 @@ export class ProjectEditComponent implements OnInit {
                .subscribe(
                  status => console.log(status),
                  err => console.log(err),
-                 () => this.projectDetail.ngOnInit()
+                 () => this.projectDetail.editing = false
                );
   }
 

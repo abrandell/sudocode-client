@@ -25,7 +25,7 @@ export class ProjectDetailComponent implements OnInit {
   protected isAuthenticated: boolean;
   editing: boolean;
 
-  constructor(private projectService: ProjectService,
+  constructor(protected projectService: ProjectService,
               private route: ActivatedRoute,
               protected auth: AuthService,
               private router: Router, private projectList: ProjectListComponent) {

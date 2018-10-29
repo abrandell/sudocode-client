@@ -7,6 +7,7 @@ import {ProjectCreation} from '../project/project-search/project-creation';
 import {CommentPage} from './comment-page';
 import {CommentCreation} from '../comment/comment-post/comment-creation';
 import {IComment} from './IComment';
+import {Difficulty} from './difficulty';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +81,28 @@ export class ProjectService {
       + `&page=${page}`
       + `&sort=datePosted,${sortOrder}`
     );
+  }
+
+  public setColor(difficulty: Difficulty): string {
+    switch (difficulty) {
+      case Difficulty.BASIC: {
+        return "#858585";
+      }
+      case Difficulty.BEGINNER: {
+        return "#2b803e";
+      }
+      case Difficulty.INTERMEDIATE: {
+        return "#2a628e";
+      }
+      case Difficulty.ADVANCED: {
+        return "#aa7636";
+      }
+      case Difficulty.EXPERT: {
+        return "#aa1828";
+      }
+
+
+    }
+
   }
 }
