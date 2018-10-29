@@ -1,0 +1,11 @@
+form {
+  font-size: 1rem;
+  .edit-buttons {
+    float: right;
+    padding-top: 1rem;
+
+    #cancel-button {
+      margin-left: .5rem;
+    }
+  }
+}
