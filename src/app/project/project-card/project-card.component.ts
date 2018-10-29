@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {IProject} from '../IProject';
 import {AuthService} from '../../shared/auth.service';
 import {IUser} from '../../shared/IUser';
@@ -24,20 +24,6 @@ export class ProjectCardComponent implements OnInit {
 
   protected getDetails(): void {
     this.router.navigateByUrl(`/projects/${this.project.id}`);
-  }
-
-  public setColor(text: string): string {
-    switch (text) {
-      case 'beginner': {
-        return 'green';
-      }
-      case 'intermediate': {
-        return 'blue';
-      }
-      case 'advanced': {
-        return 'red';
-      }
-    }
   }
 
 }

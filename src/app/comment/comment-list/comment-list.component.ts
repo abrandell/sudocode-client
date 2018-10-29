@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, Input, OnInit, SimpleChange} from '@angular/core';
 import {CommentPage} from '../../shared/comment-page';
 import {SortOrder} from '../../shared/sort-order';
 import {ProjectService} from '../../shared/project.service';
 import {ActivatedRoute} from '@angular/router';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+import {IComment} from '../../shared/IComment';
 
 @Component({
   selector: 'app-comment-list',
@@ -33,6 +34,7 @@ import {animate, query, stagger, style, transition, trigger} from '@angular/anim
 export class CommentListComponent implements OnInit {
 
   protected comments: CommentPage;
+  public commentArray: IComment[];
   protected pageNum: number;
   protected projectId: number;
   private order: SortOrder;
@@ -47,6 +49,9 @@ export class CommentListComponent implements OnInit {
   ngOnInit() {
     this.pageNum = 0;
     this.sortByNewest();
+    if (this.comments) {
+      this.commentArray = this.comments.content;
+    }
   }
 
   protected sortByOldest(): void {
@@ -86,5 +91,11 @@ export class CommentListComponent implements OnInit {
   public refreshCommentList(): void {
     this.sortByNewest();
   }
+
+  newCommentPosted(comment: IComment) {
+    this.commentArray.push(comment);
+  }
+
+
 
 }

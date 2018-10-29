@@ -1,4 +1,4 @@
-import { IComment } from './../../shared/IComment';
+import {IComment} from './../../shared/IComment';
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CommentCreation} from './comment-creation';
 import {AuthService} from '../../shared/auth.service';
@@ -26,6 +26,9 @@ export class CommentPostComponent implements OnInit {
     this.comment = new CommentCreation('');
   }
 
+  get diagnostic(): string {
+    return JSON.stringify(this.comment);
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -35,20 +38,23 @@ export class CommentPostComponent implements OnInit {
   }
 
   public submit() {
+    this.comment.body = this.comment.body.trim();
+
     let submittedComment: IComment;
 
     this.projectService.postComment(this.projectId, this.comment)
-      .subscribe(
-        data => submittedComment = data,
-        err => console.log(err),
-        () => this.commentList.refreshCommentList());
+        .subscribe(
+          data => submittedComment = data,
+          err => console.log(err),
+          () => this.commentList.refreshCommentList())
+        .add(document.getElementById('clear').click());
   }
 
+  protected showClearButton(): boolean {
+    return this.comment.body !== null && this.comment.body.length > 0;
+  }
 
-
-
-
-  get diagnostic(): string {
-    return JSON.stringify(this.comment);
+  isFormValid() {
+    return this.comment.body !== null && this.comment.body.trim().length >= 3;
   }
 }
