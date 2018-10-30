@@ -1,34 +1,53 @@
-import {IComment} from './../../shared/IComment';
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {IComment} from '../../shared/IComment';
+import {Component, OnInit} from '@angular/core';
 import {CommentCreation} from './comment-creation';
 import {AuthService} from '../../shared/auth.service';
 import {ProjectService} from '../../shared/project.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProjectDetailComponent} from '../../project/project-detail/project-detail.component';
 import {CommentListComponent} from '../comment-list/comment-list.component';
+import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-comment-post',
   templateUrl: './comment-post.component.html',
-  styleUrls: ['./comment-post.component.scss']
+  styleUrls: ['./comment-post.component.scss'],
+  animations: [
+    trigger('formValid', [
+      state('invalid', style({
+        opacity: '.5'
+      })),
+      state('valid', style({
+        opacity: '1'
+      })),
+      transition('invalid => valid', [
+        animate('.5s ease-in')
+      ]),
+      transition('valid => invalid', [
+        animate('.5s ease-out')
+      ])
+    ])
+  ]
 })
 export class CommentPostComponent implements OnInit {
 
-  protected comment: CommentCreation;
-  protected submitted = false;
+  commentPostForm = this.formBuilder.group({
+    body: [
+      {value: '', disabled: this.auth.authenticated},
+      [
+        Validators.required,
+        this.textLengthTrimValidator(3)
+      ]
+    ]
+  });
+
   private projectId: number;
 
   constructor(protected auth: AuthService,
               private projectService: ProjectService,
               private route: ActivatedRoute,
-              private router: Router,
-              private commentList: CommentListComponent) {
-    this.comment = new CommentCreation('');
-  }
-
-  get diagnostic(): string {
-    return JSON.stringify(this.comment);
-  }
+              private commentList: CommentListComponent,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -38,23 +57,29 @@ export class CommentPostComponent implements OnInit {
   }
 
   public submit() {
-    this.comment.body = this.comment.body.trim();
+    const formValue: string = this.commentPostForm.controls['body'].value;
 
-    let submittedComment: IComment;
+    const newComment = new CommentCreation(formValue.trim());
 
-    this.projectService.postComment(this.projectId, this.comment)
+    this.projectService.postComment(this.projectId, newComment)
         .subscribe(
-          data => submittedComment = data,
-          err => console.log(err),
-          () => this.commentList.refreshCommentList())
-        .add(document.getElementById('clear').click());
+          data => console.log(data.status),
+          err => new Error(err),
+          () => this.clearText()
+        ).add(this.commentList.refreshCommentList());
   }
 
-  protected showClearButton(): boolean {
-    return this.comment.body !== null && this.comment.body.length > 0;
+  protected clearText() {
+    this.commentPostForm.patchValue({body: ''});
   }
 
-  isFormValid() {
-    return this.comment.body !== null && this.comment.body.trim().length >= 3;
+  public textLengthTrimValidator(requiredLength: number): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+
+      const text = control.value.toString();
+      const invalid = (text === null || text.trim().length < requiredLength);
+
+      return invalid ? {'Not required length': text} : null;
+    };
   }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {IProject} from '../project/IProject';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {ProjectPage} from './project-page';
 import {ProjectCreation} from '../project/project-search/project-creation';
 import {CommentPage} from './comment-page';
@@ -40,10 +40,11 @@ export class ProjectService {
     return this.http.post<IProject>(this.URL, project);
   }
 
-  public postComment(projectId: number, comment: CommentCreation): Observable<IComment> {
+  public postComment(projectId: number, comment: CommentCreation): Observable<HttpResponse<IComment>> {
     return this.http.post<IComment>(
-      `${this.URL}/${projectId}/comments`, comment
-    );
+      `${this.URL}/${projectId}/comments`, comment,
+      {observe: 'response'}
+      );
   }
 
   public fetchProjectComments(projectId: number, sortOrder: string, pageNum: number): Observable<CommentPage> {

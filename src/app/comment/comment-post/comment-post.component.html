@@ -1,20 +1,32 @@
-<form  (ngSubmit)="submit()" #commentForm="ngForm" >
-  <div class="form-group">
-    <label for="comment-body">
-      <span *ngIf="auth.authenticated">Post comment</span>
-      <span *ngIf="!auth.authenticated">
-        <a class="clickable" href="http://localhost:8080/oauth2/authorization/github">Log in to post a comment</a></span>
-    </label>
-    <textarea [disabled]="!auth.authenticated" type="text" class="form-control" id="comment-body"
-              required minlength="3" rows="3" maxlength="255"
-    [(ngModel)]="comment.body" name="body"></textarea>
-  </div>
-  <div class="form-group buttons">
+<!--<form  (ngSubmit)="submit()" #commentForm="ngForm" >-->
+  <!--<div class="form-group">-->
+    <!--<label for="comment-body">-->
+      <!--<span *ngIf="auth.authenticated">Post comment</span>-->
+      <!--<span *ngIf="!auth.authenticated">-->
+        <!--<a class="clickable" href="http://localhost:8080/oauth2/authorization/github">Log in to post a comment</a></span>-->
+    <!--</label>-->
+    <!--<textarea [disabled]="!auth.authenticated" type="text" class="form-control" id="comment-body"-->
+              <!--required rows="3" maxlength="255" appTextLengthTrim="3"-->
+    <!--[(ngModel)]="comment.body" name="body"></textarea>-->
+  <!--</div>-->
+  <!--<div class="form-group buttons">-->
+<div class="form-group" [formGroup]="commentPostForm">
 
-    <button type="submit" class="btn btn-primary btn-sm clickable"
-            [disabled]="!isFormValid()">Post</button>
-    <button *ngIf="showClearButton()" id ='clear'
-            type="reset" class="btn btn-sm btn-outline-secondary">Clear</button>
+  <label for="comment-body">
+    <span *ngIf="auth.authenticated">Post comment</span>
+    <span *ngIf="!auth.authenticated">
+    <a class="clickable" href="http://localhost:8080/oauth2/authorization/github">Log in to post a comment</a></span>
+    </label>
+  <textarea type="text"
+            class="form-control"
+            formControlName="body"
+            id="comment-body"
+            rows="3">
+  </textarea>
+  <div [@formValid]="commentPostForm.valid ? 'valid' : 'invalid'" class="buttons" >
+  <button (click)="submit()" [disabled]="!commentPostForm.valid" class="btn btn-primary btn-sm clickable"> Submit</button>
+  <button *ngIf="commentPostForm.valid" id ='clear' (click)="clearText()"
+          class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"> </i> Cancel</button>
   </div>
-</form>
+</div>
 

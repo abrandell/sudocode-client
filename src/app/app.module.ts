@@ -11,7 +11,7 @@ import { ProjectPostComponent } from './project/project-post/project-post.compon
 import { ProjectSearchComponent } from './project/project-search/project-search.component';
 import { HeaderComponent } from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProjectService} from './shared/project.service';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
@@ -53,7 +53,7 @@ export class XhrInterceptor implements HttpInterceptor {
     UserListComponent,
     UserCardComponent,
     ProjectEditComponent,
-    CommentListComponent
+    CommentListComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +61,7 @@ export class XhrInterceptor implements HttpInterceptor {
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ProjectService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },

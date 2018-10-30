@@ -1,6 +1,11 @@
-.form-group.buttons {
+.buttons {
+  margin-top: .2rem;
 
   #clear {
     margin-left: .5rem;
   }
+}
+
+.ng-invalid.buttons.btn-primary {
+  opacity: 1;
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {filter, map, mergeMap} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
