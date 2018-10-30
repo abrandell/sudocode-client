@@ -9,6 +9,8 @@ import {ActivatedRoute, Params} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  collapsed = true;
+
   constructor(private activatedRoute: ActivatedRoute, public auth: AuthService) {
   }
 

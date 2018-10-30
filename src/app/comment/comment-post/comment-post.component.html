@@ -23,8 +23,8 @@
             id="comment-body"
             rows="3" [placeholder]="'Share a comment.'">
   </textarea>
-  <div *ngIf="submitted" class="alert alert-success" role="alert">Successfully posted comment.</div>
-  <div [@formValid]="commentPostForm.valid ? 'valid' : 'invalid'" class="buttons" >
+  <ngb-alert *ngIf="submitted" type="success" (close)="submitted = false">Comment submitted.</ngb-alert>
+  <div [@formValid]="commentPostForm.valid ? 'valid' : 'invalid'" *ngIf="!submitted" class="buttons" >
   <button (click)="submit()" [disabled]="!commentPostForm.valid" class="btn btn-primary btn-sm clickable"> Submit</button>
   <button *ngIf="commentPostForm.valid" id ='clear' (click)="clearText()"
           class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"> </i> Cancel</button>

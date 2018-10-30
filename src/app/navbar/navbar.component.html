@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-sm navbar-dark">
   <div id="inner-nav" class="container max-width-wrapper">
     <a class="navbar-brand" routerLink="/">(sudoCode);</a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+    <button (click)="collapsed = !collapsed" class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNav">
+    <div [ngbCollapse]="collapsed" class="collapse navbar-collapse" id="mainNav">
       <div class="navbar-expand">
         <div class="navbar-nav">
           <a class="nav-item nav-link" routerLinkActive="active"

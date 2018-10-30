@@ -23,6 +23,7 @@ import { UserCardComponent } from './user/user-card/user-card.component';
 import {UserService} from './shared/user.service';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { CommentListComponent } from './comment/comment-list/comment-list.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @Injectable()
@@ -61,7 +62,8 @@ export class XhrInterceptor implements HttpInterceptor {
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     ProjectService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },

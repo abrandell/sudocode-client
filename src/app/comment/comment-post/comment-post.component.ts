@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CommentListComponent} from '../comment-list/comment-list.component';
 import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {debounceTime} from "rxjs/operators";
 
 @Component({
   selector: 'app-comment-post',
@@ -48,7 +49,8 @@ export class CommentPostComponent implements OnInit {
               private projectService: ProjectService,
               private route: ActivatedRoute,
               private commentList: CommentListComponent,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -59,24 +61,25 @@ export class CommentPostComponent implements OnInit {
 
   public submit() {
     const formValue: string = this.commentPostForm.controls['body'].value;
-
     const newComment = new CommentCreation(formValue.trim());
 
     this.projectService.postComment(this.projectId, newComment)
-        .subscribe(
-          data => console.log(data.status),
-          err => new Error(err),
-          () => this.commentList.ngOnInit()
-        ).add(() => {
-          this.clearText();
-          this.submitted = true;
-        });
+      .subscribe(
+        data => console.log(data.status),
+        err => new Error(err),
+        () => this.commentList.ngOnInit()
+      ).add(() => {
+      this.clearText();
+      this.submitted = true;
+    });
 
+    setTimeout(() => this.submitted = false, 10000);
   }
 
   protected clearText() {
     this.commentPostForm.patchValue({body: ''});
   }
+
 
   public textLengthTrimValidator(requiredLength: number): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
