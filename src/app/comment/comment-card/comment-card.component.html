@@ -3,29 +3,9 @@
   <div *ngIf="auth.currentUser?.id == comment?.author?.id"
        class="author-buttons btn-group-sm">
     <button id="edit" class="btn btn-sm btn-outline-secondary">
-      <i class="fa fa-pencil"></i> Edit
-    </button>
+      <i class="fa fa-pencil"></i> Edit</button>
 
 
-<!--    <div class="modal fade" id="confirm-delete" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Are you sure?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              This cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" (click)="deleteComment()" data-dismiss="modal">Delete Comment</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>-->
     <ng-template #content let-modal>
       <div class="modal-header">
         <h5 class="modal-title" id="modal-title">Confirm Deletion</h5>
@@ -40,7 +20,6 @@
         <button type="button" class="btn btn-sm btn-danger" (click)="deleteComment()"><i class="fa fa-trash-o"></i> Delete</button>
       </div>
     </ng-template>
-
     <button id="delete" class="btn btn-sm btn-danger" (click)="confirmDelete(content)"><i class="fa fa-trash-o"></i> Delete</button>
 
 

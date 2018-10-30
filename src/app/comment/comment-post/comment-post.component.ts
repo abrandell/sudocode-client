@@ -73,7 +73,7 @@ export class CommentPostComponent implements OnInit {
       this.submitted = true;
     });
 
-    setTimeout(() => this.submitted = false, 10000);
+    setTimeout(() => this.submitted = false, 5000);
   }
 
   protected clearText() {
