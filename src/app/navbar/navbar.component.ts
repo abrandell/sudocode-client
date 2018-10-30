@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   collapsed = true;
 
-  constructor(private activatedRoute: ActivatedRoute, public auth: AuthService) {
+  constructor(private activatedRoute: ActivatedRoute, private route: Router, public auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
         status => console.log(status),
         err => console.log(err)
       );
+  }
+
+  login() {
+    window.location.href = 'http://localhost:8080/oauth2/authorization/github';
   }
 
 }

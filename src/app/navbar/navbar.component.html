@@ -18,22 +18,21 @@
         </div>
       </div>
     </div>
-    <div class="mavbar-expand ml-auto">
-      <div class="navbar-nav" *ngIf="!auth.authenticated">
-        <a class="nav-item nav-link" href="http://localhost:8080/oauth2/authorization/github">
-          <i class="fa fa-github fa-lg"></i> <span> Login</span>
+    <div class="col text-right">
+      <div ngbDropdown placement="bottom-center" class="d-inline-block">
+        <div id="user-info">
+        <a *ngIf="auth.authenticated" ngbDropdownToggle>
+          <span id="login">{{auth.currentUser.login}}</span>
+          <img src="{{auth.currentUser.avatar_url}}">
         </a>
-      </div>
-      <li class="nav-item dropdown" *ngIf="auth.authenticated">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-          <span class="login">{{auth.currentUser?.login}} </span>
-          <img src="{{auth.currentUser?.avatar_url}}" style="max-width: 40px; border-radius: 50px; padding: 0; margin: 0">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" (click)="logout()" style="cursor: pointer">Logout</a>
         </div>
-      </li>
+        <button *ngIf="!auth?.authenticated"  class="btn btn btn-secondary" (click)="login()">
+          <i class="fa fa-github-alt"></i> Login with Github</button>
+        <div *ngIf="auth.authenticated" ngbDropdownMenu id="user-options" aria-labelledby="user-options">
+          <button class="dropdown-item" (click)="logout()">Logout</button>
+          <button class="dropdown-item">Settings</button>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
