@@ -97,6 +97,7 @@ export class ProjectListComponent implements OnInit {
 
   postForm()  {
     this.router.navigate(['projects', 'post'])
+      .catch((err: Error) => (console.log(err.message)))
       .then(() => {});
   }
 

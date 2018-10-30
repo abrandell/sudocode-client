@@ -18,17 +18,17 @@
       </li>
     </ul>
   </div>
-  <ul class="comment-list" [@listStagger]="comments">
-    <li *ngFor="let comment of comments?.content">
+  <ul class="comment-list" [@listStagger]="comments" style="min-height: fit-content">
+    <li *ngFor="let comment of comments?.content" style="min-height: fit-content">
       <app-comment-card [comment]="comment"></app-comment-card>
     </li>
   </ul>
+  <ul class="pagination-sm d-flex float-right" style="margin-right: 3rem; padding-bottom: 20px">
+    <li [class]="comments?.first ? 'page-item disabled' : 'page-item'">
+      <a class="page-link" (click)="prevCommentPage()">prev</a>
+    </li>
+    <li [class]="comments?.last ? 'page-item disabled' : 'page-item'">
+      <a class="page-link" (click)="nextCommentPage()">next</a>
+    </li>
+  </ul>
 </div>
-<ul class="pagination-sm d-flex float-right" style="margin-right: 3rem">
-  <li [class]="comments?.first ? 'page-item disabled' : 'page-item'">
-    <a class="page-link" (click)="prevCommentPage()">prev</a>
-  </li>
-  <li [class]="comments?.last ? 'page-item disabled' : 'page-item'">
-    <a class="page-link" (click)="nextCommentPage()">next</a>
-  </li>
-</ul>

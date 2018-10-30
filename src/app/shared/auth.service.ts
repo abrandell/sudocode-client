@@ -19,11 +19,9 @@ export class AuthService {
       this.http.get<any>('/api/users/me')
         .subscribe(data => {
           this.authenticated = JSON.stringify(data).includes('login');
-
           if (this.authenticated) {
             this.currentUser = data;
           }
-
         });
     }
   }

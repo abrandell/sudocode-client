@@ -33,7 +33,7 @@ export class CommentPostComponent implements OnInit {
 
   commentPostForm = this.formBuilder.group({
     body: [
-      {value: '', disabled: this.auth.authenticated},
+      {value: '', disabled: !this.auth.authenticated},
       [
         Validators.required,
         this.textLengthTrimValidator(3)
@@ -42,6 +42,7 @@ export class CommentPostComponent implements OnInit {
   });
 
   private projectId: number;
+  submitted: boolean;
 
   constructor(protected auth: AuthService,
               private projectService: ProjectService,
@@ -65,8 +66,12 @@ export class CommentPostComponent implements OnInit {
         .subscribe(
           data => console.log(data.status),
           err => new Error(err),
-          () => this.clearText()
-        ).add(this.commentList.refreshCommentList());
+          () => this.commentList.ngOnInit()
+        ).add(() => {
+          this.clearText();
+          this.submitted = true;
+        });
+
   }
 
   protected clearText() {

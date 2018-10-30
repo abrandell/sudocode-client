@@ -34,7 +34,6 @@ import {IComment} from '../../shared/IComment';
 export class CommentListComponent implements OnInit {
 
   protected comments: CommentPage;
-  public commentArray: IComment[];
   protected pageNum: number;
   protected projectId: number;
   private order: SortOrder;
@@ -49,9 +48,7 @@ export class CommentListComponent implements OnInit {
   ngOnInit() {
     this.pageNum = 0;
     this.sortByNewest();
-    if (this.comments) {
-      this.commentArray = this.comments.content;
-    }
+
   }
 
   protected sortByOldest(): void {
@@ -92,9 +89,7 @@ export class CommentListComponent implements OnInit {
     this.sortByNewest();
   }
 
-  newCommentPosted(comment: IComment) {
-    this.commentArray.push(comment);
-  }
+
 
 
 

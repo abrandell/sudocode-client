@@ -21,8 +21,9 @@
             class="form-control"
             formControlName="body"
             id="comment-body"
-            rows="3">
+            rows="3" [placeholder]="'Share a comment.'">
   </textarea>
+  <div *ngIf="submitted" class="alert alert-success" role="alert">Successfully posted comment.</div>
   <div [@formValid]="commentPostForm.valid ? 'valid' : 'invalid'" class="buttons" >
   <button (click)="submit()" [disabled]="!commentPostForm.valid" class="btn btn-primary btn-sm clickable"> Submit</button>
   <button *ngIf="commentPostForm.valid" id ='clear' (click)="clearText()"
