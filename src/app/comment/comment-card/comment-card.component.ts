@@ -5,6 +5,7 @@ import {ProjectService} from '../../shared/project.service';
 import {ActivatedRoute} from '@angular/router';
 import {ProjectDetailComponent} from '../../project/project-detail/project-detail.component';
 import {CommentListComponent} from '../comment-list/comment-list.component';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-comment-card',
@@ -19,7 +20,7 @@ export class CommentCardComponent implements OnInit {
   constructor(protected auth: AuthService,
               private projectService: ProjectService,
               private route: ActivatedRoute,
-              private commentList: CommentListComponent) {
+              private commentList: CommentListComponent, private modalService: NgbModal) {
     this.route.params.subscribe(
       params => this.projectId = params.id,
       err => console.log(err)
@@ -35,7 +36,11 @@ export class CommentCardComponent implements OnInit {
         () => {},
         err => console.log(err),
         () => this.commentList.refreshCommentList()
-      );
+      ).add(this.modalService.dismissAll());
 
+  }
+
+  confirmDelete(content) {
+    this.modalService.open(content, {centered: true});
   }
 }
