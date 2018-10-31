@@ -9,6 +9,7 @@ import {AuthService} from '../../shared/auth.service';
 import {ProjectListComponent} from '../project-list/project-list.component';
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 
 @Component({
@@ -27,7 +28,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   constructor(protected projectService: ProjectService,
               private route: ActivatedRoute,
               protected auth: AuthService,
-              private router: Router, private projectList: ProjectListComponent) {
+              private router: Router, private projectList: ProjectListComponent,
+              private modalService: NgbModal) {
 
     this.route.params.pipe(takeUntil(this.destroy)).subscribe(
       params => this.projectId = params.id,
@@ -49,9 +51,16 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
           .subscribe(
             status => console.log(status),
             err => console.log(err),
-            () => this.projectList.ngOnInit())
+            () => {
+              this.modalService.dismissAll();
+              this.projectList.ngOnInit();
+            })
           .add(() => this.router.navigate(['projects']));
     }
+  }
+
+  confirmDelete(content) {
+    this.modalService.open(content, {centered: true});
   }
 
   ngOnInit() {

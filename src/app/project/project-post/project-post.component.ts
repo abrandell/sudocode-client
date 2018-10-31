@@ -35,7 +35,7 @@ export class ProjectPostComponent implements OnDestroy{
           status => console.log(status),
           err =>  console.error(err.message),
           () => this.submitted = true)
-      .add(() => this.router.navigate(['projects']).then(this.projectList.ngOnInit));
+      .add(() => this.router.navigate(['projects']).then(() => this.projectList.ngOnInit));
   }
 
   get diagnostic(): string {
