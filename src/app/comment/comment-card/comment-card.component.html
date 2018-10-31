@@ -2,7 +2,7 @@
   <div *ngIf="comment != null">
     <div *ngIf="auth.currentUser?.id == comment?.author?.id"
          class="author-buttons btn-group-sm">
-      <button id="edit" class="btn btn-sm btn-outline-secondary"><i class="fa fa-pencil"></i> Edit</button>
+      <button id="edit" class="btn btn-outline-secondary"><i class="fa fa-pencil fa-2x"></i> </button>
 
       <!-- Delete comment modal -->
       <ng-template #commentDeleteModal let-modal>
@@ -16,14 +16,14 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-outline-secondary" (click)="modal.close()">Cancel</button>
-          <button type="button" class="btn btn-sm btn-danger" (click)="deleteComment()"><i class="fa fa-trash-o"></i>
+          <button type="button" class="btn btn- btn-danger" (click)="deleteComment()"><i class="fa fa-trash-o"></i>
             Delete
           </button>
         </div>
       </ng-template>
       <button id="delete"
-              class="btn btn-sm btn-danger"
-              (click)="confirmDelete(commentDeleteModal)"><i class="fa fa-trash-o"></i> Delete
+              class="btn btn-danger"
+              (click)="confirmDelete(commentDeleteModal)"><i class="fa fa-trash-o fa-2x"></i>
       </button>
 
     </div>

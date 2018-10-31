@@ -23,7 +23,8 @@
       <app-comment-card [comment]="comment"></app-comment-card>
     </li>
   </ul>
-  <ul class="pagination-sm d-flex float-right" style="margin-right: 3rem; padding-bottom: 20px">
+  <p class="align-self-center" *ngIf="comments?.number_of_elements === 0">Be the first to comment.</p>
+  <ul *ngIf="comments?.number_of_elements > 0" class="pagination-sm d-flex float-right" style="margin-right: 3rem; padding-bottom: 20px">
     <li [class]="comments?.first ? 'page-item disabled' : 'page-item'">
       <a class="page-link" (click)="prevCommentPage()">prev</a>
     </li>

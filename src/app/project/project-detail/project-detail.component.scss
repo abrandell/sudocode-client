@@ -2,14 +2,16 @@
 
 #project-details {
   grid-template-rows: repeat(2, auto);
+  max-width: 1024px;
 
   #details-header {
     //display: grid;
     //grid-template-columns: repeat(2, auto);
+    padding-bottom: 1rem;
 
     .title {
       font-family: $font-family-primary;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
@@ -20,6 +22,7 @@
 
     .date {
       justify-self: end;
+      font-size: .9rem;
       float: right;
     }
   }
@@ -58,8 +61,8 @@
     white-space: pre-wrap;
 
     .text {
-      font-size: 1rem;
-      word-wrap: break-word;
+      font-size: .9rem;
+      word-wrap: break-spaces;
     }
   }
 

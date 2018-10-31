@@ -28,9 +28,12 @@
     }
 
     .read-more {
+      align-items: center;
       cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
       color: $blue;
-      padding-bottom: .2rem;
+      padding-bottom: 1rem;
 
       &:hover {
         color: $primary-hover;
@@ -56,6 +59,7 @@
 
     .date {
       justify-self: right;
+
     }
   }
 
