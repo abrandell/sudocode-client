@@ -7,7 +7,10 @@
     </span>
   </h4>
   <!--<h6 id="difficulty">{{project.difficulty}}</h6>-->
-  <p class="text-body" id="description">{{project?.description}}</p>
+  <div id="preview-content">
+  <p class="text-body" id="description">{{project?.description | slice:0:400}}...</p>
+  <a class="read-more clickable" style="font-size: 1rem" (click)="getDetails()">Read more</a>
+  </div>
   <hr class="my-2">
   <h6 id="metadata">
       <span class="user-details">

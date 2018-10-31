@@ -2,21 +2,24 @@
   <app-header [headerText]="'Project Details'"></app-header>
   <div class="container-fluid">
     <div id="project-details" class="container">
+
       <div id="details-header" >
         <span class="title">{{project?.title}}</span>
-        <span class="date">{{project?.date_posted | date: 'MMM. d, y'}}</span>
-      </div>
-      <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
-      <div *ngIf="!editing" class="metadata">
-        <span class="difficulty" [style.color]="projectService.setColor(project?.difficulty)">{{project?.difficulty}}</span>
-        <span id="user-info">
-          <span class="author-avatar">
-            <img src="{{project?.author?.avatar_url}}" alt="avatar">
-          </span>
+        <span class="difficulty"
+              [style.color]="projectService.setColor(project?.difficulty)">[{{project?.difficulty | uppercase}}]</span>
+        <span class="date"><i class="fa fa-calendar-o"></i>
+          {{project?.date_posted | date: 'MMM. d, y'}}
+        </span>
+        <div class="metadata">
+        <span id="user-info" class="container">
+          <span id="submitted-by">submitted by:  </span>
           <span class="author-login">{{project?.author?.login}}</span>
         </span>
+        </div>
       </div>
-      <div class="project-description container">
+
+      <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
+      <div *ngIf="!editing" class="project-description container">
         <p class="text" *ngIf="!editing">{{project?.description}}</p>
       </div>
       <div class="author-buttons" *ngIf="isAuthor() && !editing" id="options">
@@ -46,7 +49,7 @@
                 class="btn btn-sm btn-danger"
                 (click)="confirmDelete(projectDeleteModal)"><i class="fa fa-trash-o"></i> Delete
         </button>
-
+        <!-- end of modal -->
 
     </div>
       <app-comment-list></app-comment-list>

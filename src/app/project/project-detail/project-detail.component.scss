@@ -4,8 +4,8 @@
   grid-template-rows: repeat(2, auto);
 
   #details-header {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+    //display: grid;
+    //grid-template-columns: repeat(2, auto);
 
     .title {
       font-family: $font-family-primary;
@@ -14,15 +14,19 @@
       margin-bottom: 1rem;
     }
 
+    .difficulty {
+      padding-left: 1rem;
+    }
+
     .date {
       justify-self: end;
+      float: right;
     }
   }
 
   .metadata {
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(2, auto);
 
     .difficulty {
       font-size: 1.2rem;
@@ -32,7 +36,9 @@
     }
 
     #user-info {
-      justify-self: end;
+      font-size: 1rem;
+
+      justify-self: start;
 
       .author-avatar img {
         max-height: 20px;

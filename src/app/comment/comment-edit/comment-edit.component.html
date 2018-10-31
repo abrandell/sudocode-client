@@ -1,0 +1,23 @@
+<div class="form-group" [formGroup]="commentEditForm">
+
+  <label for="comment-body">
+  </label>
+  <textarea type="text"
+            class="form-control"
+            formControlName="body"
+            id="comment-body"
+            rows="3" [placeholder]="'Share a comment.'">
+  </textarea>
+
+  <div class="container-fluid" style="padding-top: .5rem">
+    <div [@formValid]="commentEditForm.valid ? 'valid' : 'invalid'" *ngIf="!submitted" class="buttons">
+
+      <button *ngIf="commentEditForm.dirty" (click)="saveEdit()" [disabled]="!commentPostForm.valid"
+              class="btn btn-primary btn-sm clickable"> Submit
+      </button>
+      <button *ngIf="commentEditForm.valid" id='clear'
+              class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"> </i> Cancel
+      </button>
+    </div>
+  </div>
+</div>
