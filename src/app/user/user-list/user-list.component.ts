@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
     this.userService.fetchAll(page, order)
       .subscribe(
         data => this.users = data,
-        err => console.log(err)
+        err => console.error(err.message)
       );
 
   }

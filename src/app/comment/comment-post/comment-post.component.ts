@@ -1,5 +1,5 @@
 import {IComment} from '../../shared/IComment';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommentCreation} from './comment-creation';
 import {AuthService} from '../../shared/auth.service';
 import {ProjectService} from '../../shared/project.service';
@@ -7,7 +7,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CommentListComponent} from '../comment-list/comment-list.component';
 import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {debounceTime} from "rxjs/operators";
+import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-comment-post',
@@ -30,20 +31,16 @@ import {debounceTime} from "rxjs/operators";
     ])
   ]
 })
-export class CommentPostComponent implements OnInit {
-
-  commentPostForm = this.formBuilder.group({
-    body: [
-      {value: '', disabled: !this.auth.authenticated},
-      [
-        Validators.required,
-        this.textLengthTrimValidator(3)
-      ]
-    ]
-  });
+export class CommentPostComponent implements OnInit, OnDestroy {
 
   private projectId: number;
   submitted: boolean;
+  private destroy = new Subject();
+
+  commentPostForm = this.formBuilder.group({
+    body: [{value: '', disabled: !this.auth.authenticated},
+          [Validators.required, this.textLengthTrimValidator(3)]
+    ]});
 
   constructor(protected auth: AuthService,
               private projectService: ProjectService,
@@ -53,10 +50,11 @@ export class CommentPostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      params => this.projectId = params.id,
-      err => console.log(err)
-    );
+    this.route.params.pipe(takeUntil(this.destroy))
+      .subscribe(
+        params => this.projectId = params.id,
+        err => console.log(err)
+      );
   }
 
   public submit() {
@@ -67,17 +65,19 @@ export class CommentPostComponent implements OnInit {
       .subscribe(
         data => console.log(data.status),
         err => new Error(err),
-        () => this.commentList.ngOnInit()
-      ).add(() => {
-      this.clearText();
-      this.submitted = true;
-    });
+        () => this.commentList.refreshCommentList())
+      .add(() => {
+        this.clearText();
+        this.submitted = true;
+      });
 
+    /* To make the 'comment submitted' alert disappear after 5 seconds. */
     setTimeout(() => this.submitted = false, 5000);
   }
 
   protected clearText() {
     this.commentPostForm.patchValue({body: ''});
+    this.commentPostForm.markAsPristine();
   }
 
 
@@ -89,5 +89,10 @@ export class CommentPostComponent implements OnInit {
 
       return invalid ? {'Not required length': text} : null;
     };
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 }

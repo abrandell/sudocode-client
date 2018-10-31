@@ -4,6 +4,7 @@
   margin-top: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  border: 2px solid rgba(51, 51, 51, 0.035);
 
   .author-buttons {
     float: right;
@@ -46,16 +47,14 @@
     }
   }
   .comment-body {
-    margin-top: 1rem;
+    //margin-top: 1rem;
     white-space: pre-wrap;
     font-family: $font-family-secondary;
     font-size: .95rem;
-    padding-bottom: 0;
+    padding-bottom: 1rem;
     margin-bottom: 0;
   }
 }
 
 
-#content {
-  border: 1px solid red;
-}
+

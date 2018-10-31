@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {ProjectPage} from '../../shared/project-page';
 import {ProjectService} from '../../shared/project.service';
@@ -6,6 +6,8 @@ import {ProjectCreation} from '../project-search/project-creation';
 import {AuthService} from '../../shared/auth.service';
 import {Router} from '@angular/router';
 import {SortOrder} from '../../shared/sort-order';
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-project-list',
@@ -34,7 +36,9 @@ import {SortOrder} from '../../shared/sort-order';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor(private projectService: ProjectService, protected auth: AuthService, private router: Router) {}
+
+  constructor(private projectService: ProjectService, protected auth: AuthService, private router: Router) {
+  }
 
   projectPage: ProjectPage;
   public page: number;
@@ -45,9 +49,7 @@ export class ProjectListComponent implements OnInit {
   ngOnInit() {
     this.order = SortOrder.DESC;
     this.page = 0;
-
     this.fetchAll(this.page, this.order);
-
     if (this.projectPage) {
       this.page = this.projectPage.number;
     }
@@ -63,24 +65,16 @@ export class ProjectListComponent implements OnInit {
     this.projectService.fetchAll(page, order)
       .subscribe(
         data => this.projectPage = data,
-        error => console.log(error)
+        err => console.error(err.message)
       );
   }
 
   nextPage(): void {
-    this.projectService.fetchAll(++this.projectPage.number, this.order)
-      .subscribe(
-        data => this.projectPage = data,
-        error => console.log(error)
-      );
+    this.fetchAll(++this.projectPage.number, this.order);
   }
 
   previousPage(): void {
-    this.projectService.fetchAll(--this.projectPage.number, this.order)
-      .subscribe(
-        data => this.projectPage = data,
-        err => console.log(err)
-      );
+    this.fetchAll(--this.projectPage.number, this.order);
   }
 
   filterByExample(page: number, example: ProjectCreation): void {
@@ -91,24 +85,20 @@ export class ProjectListComponent implements OnInit {
     this.projectService.searchProjects(page, this.order, example)
       .subscribe(
         data => this.projectPage = data,
-        err => console.log(err)
+        err => console.error(err.message)
       );
   }
 
-  postForm()  {
+  postForm() {
     this.router.navigate(['projects', 'post'])
-      .catch((err: Error) => (console.log(err.message)))
-      .then(() => {});
+      .catch((err: Error) => (console.error(err.message)))
   }
 
   sortByOldest(): void {
     this.order = SortOrder.ASC;
-      this.projectService.fetchAll(0, this.order)
-        .subscribe(
-          data => this.projectPage = data,
-          err => console.log(err)
-        );
+    this.fetchAll(0, this.order);
   }
+
 
 
 }

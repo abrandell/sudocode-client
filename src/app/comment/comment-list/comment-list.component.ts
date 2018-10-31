@@ -1,10 +1,12 @@
-import {Component, DoCheck, Input, OnInit, SimpleChange} from '@angular/core';
+import {Component, DoCheck, Input, OnDestroy, OnInit, SimpleChange} from '@angular/core';
 import {CommentPage} from '../../shared/comment-page';
 import {SortOrder} from '../../shared/sort-order';
 import {ProjectService} from '../../shared/project.service';
 import {ActivatedRoute} from '@angular/router';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {IComment} from '../../shared/IComment';
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-comment-list',
@@ -31,7 +33,9 @@ import {IComment} from '../../shared/IComment';
     ])
   ]
 })
-export class CommentListComponent implements OnInit {
+export class CommentListComponent implements OnInit, OnDestroy {
+
+  private destroy = new Subject();
 
   protected comments: CommentPage;
   protected pageNum: number;
@@ -39,7 +43,8 @@ export class CommentListComponent implements OnInit {
   private order: SortOrder;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute) {
-    this.route.params.subscribe(
+    this.route.params.pipe(takeUntil(this.destroy))
+      .subscribe(
       params => this.projectId = params.id,
       err => console.log(err)
     );
@@ -80,7 +85,7 @@ export class CommentListComponent implements OnInit {
     this.projectService.fetchProjectComments(this.projectId, this.order, this.pageNum)
         .subscribe(
           data => this.comments = data,
-          err => console.log(err)
+          err => console.error(err.message)
         );
   }
 
@@ -89,8 +94,9 @@ export class CommentListComponent implements OnInit {
     this.sortByNewest();
   }
 
-
-
-
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
+  }
 
 }

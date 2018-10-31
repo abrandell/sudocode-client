@@ -1,33 +1,28 @@
-<!--<form  (ngSubmit)="submit()" #commentForm="ngForm" >-->
-  <!--<div class="form-group">-->
-    <!--<label for="comment-body">-->
-      <!--<span *ngIf="auth.authenticated">Post comment</span>-->
-      <!--<span *ngIf="!auth.authenticated">-->
-        <!--<a class="clickable" href="http://localhost:8080/oauth2/authorization/github">Log in to post a comment</a></span>-->
-    <!--</label>-->
-    <!--<textarea [disabled]="!auth.authenticated" type="text" class="form-control" id="comment-body"-->
-              <!--required rows="3" maxlength="255" appTextLengthTrim="3"-->
-    <!--[(ngModel)]="comment.body" name="body"></textarea>-->
-  <!--</div>-->
-  <!--<div class="form-group buttons">-->
 <div class="form-group" [formGroup]="commentPostForm">
 
   <label for="comment-body">
-    <span *ngIf="auth.authenticated">Post comment</span>
+    <span *ngIf="auth.authenticated && commentPostForm.dirty">Share a comment</span>
     <span *ngIf="!auth.authenticated">
     <a class="clickable" href="http://localhost:8080/oauth2/authorization/github">Log in to post a comment</a></span>
-    </label>
+  </label>
   <textarea type="text"
             class="form-control"
             formControlName="body"
             id="comment-body"
             rows="3" [placeholder]="'Share a comment.'">
   </textarea>
-  <ngb-alert *ngIf="submitted" type="success" (close)="submitted = false">Comment submitted.</ngb-alert>
-  <div [@formValid]="commentPostForm.valid ? 'valid' : 'invalid'" *ngIf="!submitted" class="buttons" >
-  <button (click)="submit()" [disabled]="!commentPostForm.valid" class="btn btn-primary btn-sm clickable"> Submit</button>
-  <button *ngIf="commentPostForm.valid" id ='clear' (click)="clearText()"
-          class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"> </i> Cancel</button>
+
+  <div class="container-fluid" style="padding-top: .5rem">
+    <ngb-alert *ngIf="submitted" type="success" (close)="submitted = false">Comment submitted.</ngb-alert>
+    <div [@formValid]="commentPostForm.valid ? 'valid' : 'invalid'" *ngIf="!submitted" class="buttons">
+
+      <button *ngIf="commentPostForm.dirty" (click)="submit()" [disabled]="!commentPostForm.valid"
+              class="btn btn-primary btn-sm clickable"> Submit
+      </button>
+      <button *ngIf="commentPostForm.valid" id='clear' (click)="clearText()"
+              class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"> </i> Cancel
+      </button>
+    </div>
   </div>
 </div>
 
