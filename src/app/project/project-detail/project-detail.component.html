@@ -9,7 +9,7 @@
         <span class="difficulty"
               [style.color]="projectService.setColor(project?.difficulty)">[{{project?.difficulty | uppercase}}]</span>
         <span class="date"><i class="fa fa-calendar-o"></i>
-          {{project?.date_posted | date: 'MMM. d, y'}}
+          {{project?.date_posted | date: 'medium' }}
         </span>
 
         <div class="metadata">

@@ -50,7 +50,7 @@ export class CommentPostComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.params.pipe(takeUntil(this.destroy))
+    this.route.params
       .subscribe(
         params => this.projectId = params.id,
         err => console.log(err)
