@@ -2,13 +2,9 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {ProjectService} from '../../shared/project.service';
 import {IProject} from '../IProject';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CommentPage} from '../../shared/comment-page';
-import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
-import {SortOrder} from '../../shared/sort-order';
 import {AuthService} from '../../shared/auth.service';
 import {ProjectListComponent} from '../project-list/project-list.component';
 import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 
@@ -18,11 +14,11 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./project-detail.component.scss'],
 
 })
-export class ProjectDetailComponent implements OnInit, OnDestroy {
+export class ProjectDetailComponent implements OnInit {
 
   protected project: IProject;
   protected projectId: number;
-  editing: boolean;
+  public editing: boolean;
   private destroy = new Subject();
 
   constructor(protected projectService: ProjectService,
@@ -31,7 +27,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
               private router: Router, private projectList: ProjectListComponent,
               private modalService: NgbModal) {
 
-    this.route.params.pipe(takeUntil(this.destroy)).subscribe(
+    this.route.params.subscribe(
       params => this.projectId = params.id,
       err => console.log(err)
     );
@@ -79,11 +75,6 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
         );
   }
 
-  ngOnDestroy(): void {
-    console.log('ProjectDetailComponent destroyed');
-    this.destroy.next();
-    this.destroy.complete();
-  }
 
 
 

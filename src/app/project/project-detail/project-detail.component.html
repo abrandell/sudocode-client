@@ -1,5 +1,6 @@
 <div class="container-fluid max-width-wrapper page-content">
   <app-header [headerText]="'Project Details'"></app-header>
+
   <div class="container-fluid">
     <div id="project-details" class="container">
 
@@ -20,6 +21,7 @@
       </div>
 
       <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
+
       <div *ngIf="!editing" class="project-description container">
         <p class="text" *ngIf="!editing">{{project?.description}}</p>
       </div>
@@ -27,7 +29,6 @@
         <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">
           <i class="fa fa-pencil"></i> Edit
         </button>
-
 
         <!-- Delete project modal -->
         <ng-template #projectDeleteModal let-modal>

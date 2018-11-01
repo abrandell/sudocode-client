@@ -9,6 +9,7 @@ import {CommentCreation} from '../comment/comment-post/comment-creation';
 import {IComment} from './IComment';
 import {Difficulty} from './difficulty';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -63,8 +64,8 @@ export class ProjectService {
     return this.http.delete<void>(`${this.URL}/${projectId}`);
   }
 
-  public editComment(comment: IComment) {
-    // todo
+  public editComment(comment: IComment, projectId: number) {
+    return this.http.put<IComment>(`${this.URL}/${projectId}/comments/${comment.id}`, comment)
   }
 
   public updateProject(project: IProject): Observable<IProject> {

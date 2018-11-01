@@ -1,4 +1,3 @@
-<div>
 <div class="container-fluid">
   <form (ngSubmit)="editProject()" #projectEditForm="ngForm">
     <div class="form-group">
@@ -14,9 +13,14 @@
               [(ngModel)]="project.description" name="description" #description="ngModel"
               rows="5" >{{project?.description}}</textarea>
     <div class="form-group edit-buttons btn-group">
-      <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check"></i> Save</button>
-      <button id="cancel-button" (click)="cancel()" class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"></i> Cancel</button>
+      <button type="submit"
+              class="btn btn-sm btn-primary"><i class="fa fa-check"></i>
+        Save
+      </button>
+      <button id="cancel-button" (click)="cancel()"
+              class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"></i>
+        Cancel
+      </button>
     </div>
   </form>
-</div>
 </div>
