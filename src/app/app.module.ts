@@ -24,6 +24,7 @@ import {UserService} from './shared/user.service';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { CommentListComponent } from './comment/comment-list/comment-list.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {EllipsisPipe} from "./shared/pipes/ellipsis.pipe";
 
 
 @Injectable()
@@ -55,6 +56,7 @@ export class XhrInterceptor implements HttpInterceptor {
     UserCardComponent,
     ProjectEditComponent,
     CommentListComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,

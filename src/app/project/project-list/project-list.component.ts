@@ -6,8 +6,6 @@ import {ProjectCreation} from '../project-search/project-creation';
 import {AuthService} from '../../shared/auth.service';
 import {Router} from '@angular/router';
 import {SortOrder} from '../../shared/sort-order';
-import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-project-list',
@@ -98,7 +96,5 @@ export class ProjectListComponent implements OnInit {
     this.order = SortOrder.ASC;
     this.fetchAll(0, this.order);
   }
-
-
 
 }

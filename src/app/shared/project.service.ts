@@ -8,6 +8,8 @@ import {CommentPage} from './comment-page';
 import {CommentCreation} from '../comment/comment-post/comment-creation';
 import {IComment} from './IComment';
 import {Difficulty} from './difficulty';
+import {SanitizedHtmlPipe} from "./pipes/sanitized-html.pipe";
+import {sanitizeHtml} from "@angular/core/src/sanitization/sanitization";
 
 
 @Injectable({
@@ -57,7 +59,7 @@ export class ProjectService {
   public deleteComment(projectId: number, commentId: number): Observable<void> {
     return this.http.delete<void>(
       `${this.URL}/${projectId}/comments/${commentId}`
-    );
+    ).pipe();
   }
 
   public deleteProject(projectId: number): Observable<void> {

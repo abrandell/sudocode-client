@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control" id="title"
-               required minlength="5" maxlength="30"
+               required minlength="5" maxlength="100"
                [(ngModel)]="model.title" name="title"
                #title="ngModel">
         <div [hidden]="title.valid || title.pristine"
@@ -23,7 +23,7 @@
       <div class="form-group">
         <label for="description">Description</label>
         <textarea type="text" class="form-control" id="description"
-                  required minlength="8"
+                  required minlength="8" maxlength="10000"
                   [(ngModel)]="model.description" name="description"
                   #description="ngModel" rows="3"></textarea>
         <div [hidden]="description.valid || description.pristine"
