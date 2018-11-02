@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 
@@ -11,19 +11,23 @@ import {takeUntil} from "rxjs/operators";
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
+  protected collapsed = true;
   private destroy = new Subject();
-  collapsed = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private route: Router, public auth: AuthService) {
+  constructor(private activatedRoute: ActivatedRoute, public auth: AuthService) {
+  }
+
+  login() {
+    window.location.href = 'http://localhost:8080/oauth2/authorization/github';
   }
 
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(takeUntil(this.destroy))
       .subscribe((params: Params) => {
-      console.log(params);
-      this.auth.authenticate();
-    });
+        console.log(params);
+        this.auth.authenticate();
+      });
   }
 
   logout(): void {
@@ -32,10 +36,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
         status => console.log(status),
         err => console.log(err)
       );
-  }
-
-  login() {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/github';
   }
 
   ngOnDestroy(): void {

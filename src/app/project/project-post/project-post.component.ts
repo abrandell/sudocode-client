@@ -11,7 +11,7 @@ import {takeUntil} from "rxjs/operators";
   templateUrl: './project-post.component.html',
   styleUrls: ['./project-post.component.scss']
 })
-export class ProjectPostComponent implements OnDestroy{
+export class ProjectPostComponent implements OnDestroy {
 
   difficulty = [
     'basic',

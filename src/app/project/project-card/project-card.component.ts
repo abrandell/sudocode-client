@@ -20,7 +20,8 @@ export class ProjectCardComponent implements OnInit {
   }
 
   protected getDetails(): void {
-    this.router.navigate(['projects', this.project.id]);
+    this.router.navigate(['projects', this.project.id])
+      .catch((err: Error) => console.error(err.message));
   }
 
 }

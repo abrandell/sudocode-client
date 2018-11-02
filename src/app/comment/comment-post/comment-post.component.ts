@@ -1,14 +1,15 @@
-import {IComment} from '../../shared/IComment';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommentCreation} from './comment-creation';
 import {AuthService} from '../../shared/auth.service';
 import {ProjectService} from '../../shared/project.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {CommentListComponent} from '../comment-list/comment-list.component';
-import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
+import {FormBuilder, ValidatorFn, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
+import {HttpResponse} from "@angular/common/http";
+import {IComment} from "../../shared/IComment";
 
 @Component({
   selector: 'app-comment-post',
@@ -33,38 +34,41 @@ import {Subject} from "rxjs";
 })
 export class CommentPostComponent implements OnInit, OnDestroy {
 
-  private projectId: number;
-  submitted: boolean;
-  private destroy = new Subject();
-
-  commentPostForm = this.formBuilder.group({
+  commentPostForm = this.fb.group({
     body: [{value: '', disabled: !this.auth.authenticated},
-          [Validators.required, this.textLengthTrimValidator(3)]
-    ]});
+      [
+        Validators.required,
+        this.textLengthTrimValidator(3)
+      ]
+    ]
+  });
+  submitted: boolean;
+  private projectId: number;
+  private destroy = new Subject();
 
   constructor(protected auth: AuthService,
               private projectService: ProjectService,
               private route: ActivatedRoute,
               private commentList: CommentListComponent,
-              private formBuilder: FormBuilder) {
+              private fb: FormBuilder) {
   }
 
-  ngOnInit() {
-    this.route.params
+  ngOnInit(): void {
+    this.route.params.pipe(takeUntil(this.destroy))
       .subscribe(
         params => this.projectId = params.id,
-        err => console.log(err)
+        err => console.error(err.message)
       );
   }
 
-  public submit() {
+  public submit(): void {
     const formValue: string = this.commentPostForm.controls['body'].value;
     const newComment = new CommentCreation(formValue.trim());
 
     this.projectService.postComment(this.projectId, newComment)
       .subscribe(
-        data => console.log(data.status),
-        err => new Error(err),
+        (data: HttpResponse<IComment>) => console.log(data.status),
+        (err: Error) => console.log(err.message),
         () => this.commentList.refreshCommentList())
       .add(() => {
         this.clearText();
@@ -75,24 +79,23 @@ export class CommentPostComponent implements OnInit, OnDestroy {
     setTimeout(() => this.submitted = false, 5000);
   }
 
-  protected clearText() {
-    this.commentPostForm.patchValue({body: ''});
-    this.commentPostForm.markAsPristine();
-  }
-
-
   public textLengthTrimValidator(requiredLength: number): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
+    return (control): { [key: string]: any } | undefined => {
 
       const text = control.value.toString();
-      const invalid = (text === null || text.trim().length < requiredLength);
+      const invalid = (text === undefined || text.trim().length < requiredLength);
 
-      return invalid ? {'Not required length': text} : null;
+      return invalid ? {'Not required length': text} : undefined;
     };
   }
 
   ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
+  }
+
+  protected clearText(): void {
+    this.commentPostForm.patchValue({body: ''});
+    this.commentPostForm.markAsPristine();
   }
 }

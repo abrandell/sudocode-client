@@ -30,8 +30,6 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-
   }
 
   editProject() {
