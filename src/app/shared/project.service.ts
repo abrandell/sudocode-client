@@ -10,6 +10,7 @@ import {IComment} from './IComment';
 import {Difficulty} from './difficulty';
 import {SanitizedHtmlPipe} from "./pipes/sanitized-html.pipe";
 import {sanitizeHtml} from "@angular/core/src/sanitization/sanitization";
+import {Vote} from "./vote.enum";
 
 
 @Injectable({
@@ -72,6 +73,10 @@ export class ProjectService {
 
   public updateProject(project: IProject): Observable<IProject> {
     return this.http.put<IProject>(`${this.URL}/${project.id}`, project);
+  }
+
+  public voteOnProject(vote: Vote, projectId: number): void {
+    this.http.post(`${this.URL}/${projectId}/vote?${vote}`, {}).subscribe(() => {});
   }
 
 
