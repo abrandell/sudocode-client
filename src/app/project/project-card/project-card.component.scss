@@ -1,74 +1,82 @@
 @import "~src/_variables.scss";
 
-#project-card {
-  border-radius: 5px;
-  margin-top: 4rem;
+.project-card-wrapper {
+  display: grid;
+  grid-template-columns: 1rem auto;
 
-  .title {
-    color: $dark;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-
-    &:hover {
-      color: $primary-hover;
-      cursor: pointer;
-    }
+  #vote {
+    margin-top: 4rem;
   }
 
-  #preview-content {
-    margin-left: .5rem;
+  #project-card {
+    border-radius: 5px;
+    margin-top: 4rem;
 
-    #description {
-      font-size: .9rem;
-      line-height: 24px;
-      word-wrap: break-spaces;
-      white-space: pre-wrap;
-      padding-bottom: 2rem;
-
-    }
-
-    .read-more {
-      align-self: center;
-      cursor: pointer;
-      font-size: 1rem;
+    .title {
+      color: $dark;
+      font-family: "Montserrat", sans-serif;
       font-weight: 500;
-      color: $blue;
-      padding-bottom: 1rem;
 
       &:hover {
         color: $primary-hover;
-      }
-    }
-  }
-
-  #metadata {
-    font-size: .9rem;
-    padding-top: .5rem;
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-
-    .user-details {
-      justify-self: left;
-
-      .avatar {
-        max-height: 20px;
-        box-shadow: 0 0 .1rem black;
-        border-radius: 50px;
+        cursor: pointer;
       }
     }
 
-    .date {
-      justify-self: right;
+    #preview-content {
+      margin-left: .5rem;
 
+      #description {
+        font-size: .9rem;
+        line-height: 24px;
+        word-wrap: break-spaces;
+        white-space: pre-wrap;
+        padding-bottom: 2rem;
+
+      }
+
+      .read-more {
+        align-self: center;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        color: $blue;
+        padding-bottom: 1rem;
+
+        &:hover {
+          color: $primary-hover;
+        }
+      }
     }
+
+    #metadata {
+      font-size: .9rem;
+      padding-top: .5rem;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+
+      .user-details {
+        justify-self: left;
+
+        .avatar {
+          max-height: 20px;
+          box-shadow: 0 0 .1rem black;
+          border-radius: 50px;
+        }
+      }
+
+      .date {
+        justify-self: right;
+
+      }
+    }
+
+    #difficulty {
+      color: gray;
+      padding-bottom: 1rem;
+    }
+
   }
-
-  #difficulty {
-    color: gray;
-    padding-bottom: 1rem;
-  }
-
-
 }
 
 

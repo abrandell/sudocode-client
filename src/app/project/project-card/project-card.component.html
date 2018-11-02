@@ -1,3 +1,8 @@
+
+<div class="project-card-wrapper">
+  <div id="vote">
+    <a (click)="upVote()"> <i class="fa fa-thumbs-o-up fa-1x"></i></a>
+  </div>
 <div id="project-card" class="container">
   <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
     <span id="difficulty" class="badge font-weight-normal" [style.color]="service.setColor(project?.difficulty)" >
@@ -19,4 +24,5 @@
         {{project?.author.login}}</span>
       <span class="date"><i class="fa fa-calendar-o"></i> {{project?.date_posted | date: 'MMM. d, y'}}</span>
   </h6>
+</div>
 </div>

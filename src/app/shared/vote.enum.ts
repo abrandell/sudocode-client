@@ -1,4 +1,4 @@
 export enum Vote {
-  UPVOTE,
-  DOWNVOTE
+  UPVOTE = "UPVOTE",
+  DOWNVOTE = "DOWNVOTE"
 }

@@ -76,7 +76,7 @@ export class ProjectService {
   }
 
   public voteOnProject(vote: Vote, projectId: number): void {
-    this.http.post(`${this.URL}/${projectId}/vote?${vote}`, {}).subscribe(() => {});
+    this.http.post(`${this.URL}/${projectId}/vote?dir=${vote}`, {}).subscribe(() => {});
   }
 
 
