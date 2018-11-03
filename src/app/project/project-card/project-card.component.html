@@ -1,13 +1,15 @@
 <div class="project-card-wrapper">
+
   <div class="container" id="vote">
     <i id="upvote-btn" (click)="upVote()" class="clickable fa fa-arrow-up fa-1x"></i>
-    <i id="downvote-btn" (click)="downVote()" class="clickable fa fa-arrow-down fa-1x"></i>
+    <div id="upvote-count">{{project?.rating}}</div>
+    <i id="downvote-btn" [style]="" (click)="downVote()" class="clickable fa fa-arrow-down fa-1x"></i>
   </div>
+
   <div id="project-card" class="container">
     <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
       <span id="difficulty" class="badge font-weight-normal" [style.color]="service.setColor(project?.difficulty)">
       ({{project?.difficulty}})</span>
-
       <span *ngIf="auth.authenticated && (project?.author === auth?.currentUser)" class="float-right">
       <i class="fa-trash"></i>
     </span>

@@ -23,7 +23,7 @@
       <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
 
       <div *ngIf="!editing" class="project-description container">
-        <p class="text" *ngIf="!editing">{{project?.description}}</p>
+        <article class="text" *ngIf="!editing">{{project?.description}}</article>
       </div>
       <div class="author-buttons" *ngIf="isAuthor() && !editing" id="options">
         <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">

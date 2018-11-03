@@ -7,21 +7,26 @@
 
   #vote {
     display: grid;
-    grid-template-rows: repeat(2, 2rem);
+    grid-template-rows: repeat(3, 2rem);
     margin-top: .5rem;
+    color: lightgray;
+    justify-content: center;
 
     i {
-      color: lightgray;
+      color: inherit;
+
       &:hover {
         color: $primary-hover;
       }
     }
+    #upvote-btn{}
 
-    #upvote-btn{
+    #upvote-count {
+      font-size: 1rem;
+      justify-self: center !important;
     }
 
-    #downvote-btn {
-    }
+    #downvote-btn {}
   }
 
   #project-card {
