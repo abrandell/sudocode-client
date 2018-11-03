@@ -114,6 +114,7 @@ li {
 
 .clickable {
   color: $dark;
+  cursor: pointer;
 
   &:hover {
     color: $primary-hover;

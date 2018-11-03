@@ -6,5 +6,6 @@ export interface IProject {
   difficulty: string;
   description: string;
   date_posted: string;
+  rating: number;
   author: IUser;
 }

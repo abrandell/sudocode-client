@@ -1,28 +1,28 @@
-
 <div class="project-card-wrapper">
-  <div id="vote">
-    <a (click)="upVote()"> <i class="fa fa-thumbs-o-up fa-1x"></i></a>
+  <div class="container" id="vote">
+    <i id="upvote-btn" (click)="upVote()" class="clickable fa fa-arrow-up fa-1x"></i>
+    <i id="downvote-btn" (click)="downVote()" class="clickable fa fa-arrow-down fa-1x"></i>
   </div>
-<div id="project-card" class="container">
-  <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
-    <span id="difficulty" class="badge font-weight-normal" [style.color]="service.setColor(project?.difficulty)" >
+  <div id="project-card" class="container">
+    <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
+      <span id="difficulty" class="badge font-weight-normal" [style.color]="service.setColor(project?.difficulty)">
       ({{project?.difficulty}})</span>
 
-    <span *ngIf="auth.authenticated && (project?.author === auth?.currentUser)" class="float-right">
+      <span *ngIf="auth.authenticated && (project?.author === auth?.currentUser)" class="float-right">
       <i class="fa-trash"></i>
     </span>
-  </h4>
-  <div id="preview-content">
-    <!-- todo add tags like stack overflow -->
-  <div class="text-body" id="description">{{project?.description | ellipsis:500 }}</div>
-  <a class="read-more text-center" (click)="getDetails()">Read more</a>
-  </div>
-  <hr class="my-2">
-  <h6 id="metadata">
+    </h4>
+    <div id="preview-content">
+      <!-- todo add tags like stack overflow -->
+      <div class="text-body" id="description">{{project?.description | ellipsis:500 }}</div>
+      <a class="read-more text-center" (click)="getDetails()">Read more</a>
+    </div>
+    <hr class="my-2">
+    <h6 id="metadata">
       <span class="user-details">
         <img src="{{project?.author.avatar_url}}" class="avatar">
         {{project?.author.login}}</span>
       <span class="date"><i class="fa fa-calendar-o"></i> {{project?.date_posted | date: 'MMM. d, y'}}</span>
-  </h6>
-</div>
+    </h6>
+  </div>
 </div>

@@ -2,15 +2,30 @@
 
 .project-card-wrapper {
   display: grid;
-  grid-template-columns: 1rem auto;
+  grid-template-columns: 2rem auto;
+  margin-top: 4rem;
 
   #vote {
-    margin-top: 4rem;
+    display: grid;
+    grid-template-rows: repeat(2, 2rem);
+    margin-top: .5rem;
+
+    i {
+      color: lightgray;
+      &:hover {
+        color: $primary-hover;
+      }
+    }
+
+    #upvote-btn{
+    }
+
+    #downvote-btn {
+    }
   }
 
   #project-card {
     border-radius: 5px;
-    margin-top: 4rem;
 
     .title {
       color: $dark;
