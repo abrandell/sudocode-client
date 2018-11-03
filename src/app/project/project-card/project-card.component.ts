@@ -26,7 +26,6 @@ export class ProjectCardComponent implements OnInit {
   }
 
   upVote() {
-
     this.project.rating++;
     this.service.voteOnProject(Vote.UPVOTE, this.project.id);
   }

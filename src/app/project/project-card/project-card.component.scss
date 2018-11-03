@@ -12,21 +12,27 @@
     color: lightgray;
     justify-content: center;
 
-    i {
+    .vote-button {
+      background-color: transparent;
+      border: none;
       color: inherit;
+      outline: none;
 
-      &:hover {
-        color: $primary-hover;
+      &:not(:disabled) {
+        cursor: pointer;
+
+        &:hover {
+          color: $primary-hover;
+        }
       }
     }
-    #upvote-btn{}
 
-    #upvote-count {
-      font-size: 1rem;
-      justify-self: center !important;
+    #upvote-btn{
     }
 
-    #downvote-btn {}
+    #upvote-count {
+      justify-self: center !important;
+    }
   }
 
   #project-card {
@@ -87,7 +93,6 @@
 
       .date {
         justify-self: right;
-
       }
     }
 
@@ -95,9 +100,5 @@
       color: gray;
       padding-bottom: 1rem;
     }
-
   }
 }
-
-
-

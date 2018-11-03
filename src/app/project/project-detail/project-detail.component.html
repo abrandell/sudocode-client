@@ -1,7 +1,12 @@
 <div class="container-fluid max-width-wrapper page-content">
-  <app-header [headerText]="'Project Details'"></app-header>
+  <app-header [headerText]="'Project:  ' + project?.title || 'Project Details'"></app-header>
 
-  <div class="container-fluid">
+
+
+
+
+  <div class="container-fluid details-page">
+    <div class="container-fluid" style="border: 1px solid black;"></div>
     <div id="project-details" class="container">
 
       <div id="details-header" >
@@ -56,5 +61,6 @@
     </div>
       <app-comment-list></app-comment-list>
   </div>
+    <div class="container-fluid" style="border: 1px solid black;"></div>
 </div>
 </div>
