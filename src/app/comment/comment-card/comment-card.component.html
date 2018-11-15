@@ -2,12 +2,14 @@
   <div *ngIf="comment != null">
     <div *ngIf="auth.currentUser?.id == comment?.author?.id"
          class="author-buttons btn-group-sm">
-      <button id="edit" class="btn btn-outline-secondary"><i class="fa fa-pencil fa-2x"></i> </button>
+      <button id="edit" class="btn btn-outline-secondary" (click)="editComment()"><i class="fa fa-pencil fa-2x"></i> </button>
       <button id="delete"
               class="btn btn-danger"
               (click)="confirmDelete(commentDeleteModal)"><i class="fa fa-trash-o fa-2x"></i>
       </button>
     </div>
+
+
 
       <!-- Delete comment modal -->
       <ng-template #commentDeleteModal let-modal>
@@ -36,7 +38,27 @@
         <div class="date">{{comment?.date_posted | date: 'MMM. d, y'}}</div>
       </div>
     </div>
-    <p class="comment-body card-body">{{comment?.body}}</p>
+    <div *ngIf="editing" class="form-group">
+      <div class="container mt-4 w-100">
+      <form (ngSubmit)="saveChanges()" #commentEditForm="ngForm">
+            <textarea type="text" class="form-control"
+                      id="comment-body"
+                      [(ngModel)]="comment.body" name="comment-body" #description="ngModel"
+                      rows="5" >{{comment?.body}}</textarea>
+          <div class="form-group edit-buttons btn-group">
+              <button type="submit"
+                      class="btn btn-sm btn-primary"><i class="fa fa-check"></i>
+                  Save
+              </button>
+              <button id="cancel-button" (click)="cancel()"
+                      class="btn btn-sm btn-outline-secondary"><i class="fa fa-close"></i>
+                  Cancel
+              </button>
+          </div>
+      </form>
+      </div>
+    </div>
+    <p *ngIf="!editing" class="comment-body card-body">{{comment?.body | ellipsis:500}}</p>
     <hr class="my-2">
   </div>
 </div>

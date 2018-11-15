@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ProjectService} from '../../shared/project.service';
+import {CommentCardComponent} from '../comment-card/comment-card.component';
+import {IComment} from '../../shared/IComment';
 
 @Component({
   selector: 'app-comment-edit',
@@ -7,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentEditComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private projectService: ProjectService, public commentCard: CommentCardComponent) { }
 
   ngOnInit() {
   }

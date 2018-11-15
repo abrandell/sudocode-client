@@ -56,5 +56,17 @@
   }
 }
 
+form {
+  font-size: 1rem;
 
+  .edit-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    justify-content: right;
+    padding-top: 1rem;
 
+    #cancel-button {
+      margin-left: .5rem;
+    }
+  }
+}
