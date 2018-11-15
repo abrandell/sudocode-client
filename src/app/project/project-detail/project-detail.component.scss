@@ -1,8 +1,7 @@
 @import "~src/_variables.scss";
 
 .details-page {
-  display: grid;
-  grid-template-columns: 15% auto 15%;
+max-width: 90%;
 
   #project-details {
 
@@ -61,7 +60,7 @@
       white-space: pre-wrap;
 
       .text {
-        font-size: .9rem;
+        font-size: 1rem;
         word-wrap: break-spaces;
         padding-bottom: 2rem;
       }

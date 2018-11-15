@@ -10,6 +10,8 @@ $light-gray-line-border: #e6e6e6 2px solid;
 $bg-gray: #e6e6e6;
 $font-family-primary: Montserrat, sans-serif;
 $font-family-secondary: "Valera Round", sans-serif;
+$font-size-base: 1rem;
+$font-family-base: "Valera Round", sans-serif;
 
 $colors: (
   primary: $primary,
@@ -30,3 +32,6 @@ $theme-colors: (
 );
 
 
+.container-fluid {
+
+}

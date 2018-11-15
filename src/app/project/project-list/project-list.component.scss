@@ -1,43 +1,37 @@
+@import "~src/_variables.scss";
+
 .page-content {
 
   .container-fluid {
-    display: grid;
 
-    @media screen and (min-width: 850px) {
-      grid-template-columns: 30% auto;
-    }
-
-    app-project-search {
-      @media screen and (max-width: 850px){
-        display: none;
-      }
+    .project-list {
+      padding-left: 0;
     }
 
     .list-info {
       display: grid;
       grid-template-columns: repeat(4, auto);
       margin-bottom: 1rem;
+      justify-items: center;
 
       select {
         margin: 0;
         width: 6rem;
         height: 1.3rem;
         padding: 0;
-        justify-self: left;
+        font-size: 1rem;
       }
 
       .result-amount {
-        justify-self: start;
       }
 
       .post-button {
-        display: flex;
-        justify-self: center;
       }
+
+
 
       .pagination-sm {
         display: flex;
-        justify-content: end;
       }
     }
   }

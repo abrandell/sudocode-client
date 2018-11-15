@@ -1,20 +1,18 @@
 <div class="container-fluid max-width-wrapper page-content">
-  <app-header [headerText]="'Project:  ' + project?.title || 'Project Details'"></app-header>
+  <app-header [headerText]="project?.title || 'Project Details'"></app-header>
 
 
 
 
 
   <div class="container-fluid details-page">
-    <div class="container-fluid" style="border: 1px solid black;"></div>
     <div id="project-details" class="container">
 
       <div id="details-header" >
-        <span class="title">{{project?.title}}</span>
         <span class="difficulty"
               [style.color]="projectService.setColor(project?.difficulty)">[{{project?.difficulty | uppercase}}]</span>
         <span class="date"><i class="fa fa-calendar-o"></i>
-          {{project?.date_posted | date: 'medium' }}
+          {{project?.date_posted | date: 'short' }}
         </span>
 
         <div class="metadata">
@@ -28,7 +26,7 @@
       <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
 
       <div *ngIf="!editing" class="project-description container">
-        <article class="text" *ngIf="!editing">{{project?.description}}</article>
+        <article class="text text-body" *ngIf="!editing">{{project?.description}}</article>
       </div>
       <div class="author-buttons" *ngIf="isAuthor() && !editing" id="options">
         <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">
@@ -61,6 +59,5 @@
     </div>
       <app-comment-list></app-comment-list>
   </div>
-    <div class="container-fluid" style="border: 1px solid black;"></div>
 </div>
 </div>
