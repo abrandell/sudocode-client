@@ -2,10 +2,10 @@
   <div *ngIf="comment != null">
     <div *ngIf="auth.currentUser?.id == comment?.author?.id"
          class="author-buttons btn-group-sm">
-      <button id="edit" class="btn btn-outline-secondary" (click)="editComment()"><i class="fa fa-pencil fa-2x"></i> </button>
+      <button id="edit" class="btn btn-outline-secondary" (click)="editComment()"><i class="fa fa-pencil fa-1x"></i> </button>
       <button id="delete"
-              class="btn btn-danger"
-              (click)="confirmDelete(commentDeleteModal)"><i class="fa fa-trash-o fa-2x"></i>
+              class="btn btn-danger rounded"
+              (click)="confirmDelete(commentDeleteModal)"><i class="fa fa-trash-o fa-1x"></i>
       </button>
     </div>
 
