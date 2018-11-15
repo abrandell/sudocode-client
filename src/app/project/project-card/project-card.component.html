@@ -7,10 +7,10 @@
   </div>
 
   <div id="project-card" class="container">
-    <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>
+    <h3><a class="title" (click)="getDetails()">{{project?.title}}</a>
       <span id="difficulty" class="badge font-weight-normal" [style.color]="service.setColor(project?.difficulty)">
       [{{project?.difficulty | uppercase }}]</span>
-    </h4>
+    </h3>
     <div id="preview-content">
       <!-- todo add tags like stack overflow -->
       <div class="text-body" id="description">{{project?.description | ellipsis:500 }}</div>

@@ -8,60 +8,60 @@ import {CommentListComponent} from '../comment-list/comment-list.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-comment-card',
-    templateUrl: './comment-card.component.html',
-    styleUrls: ['./comment-card.component.scss']
+  selector: 'app-comment-card',
+  templateUrl: './comment-card.component.html',
+  styleUrls: ['./comment-card.component.scss']
 })
 export class CommentCardComponent implements OnInit {
 
 
-    @Input() comment: IComment;
+  @Input() comment: IComment;
 
-    protected editing = false;
-    private projectId: number;
+  protected editing = false;
+  private projectId: number;
 
-    constructor(protected auth: AuthService,
-                private projectService: ProjectService,
-                private route: ActivatedRoute,
-                private commentList: CommentListComponent,
-                private modalService: NgbModal) {
-        this.route.params.subscribe(
-            params => this.projectId = params.id,
-            err => console.log(err)
+  constructor(protected auth: AuthService,
+              private projectService: ProjectService,
+              private route: ActivatedRoute,
+              private commentList: CommentListComponent,
+              private modalService: NgbModal) {
+    this.route.params.subscribe(
+      params => this.projectId = params.id,
+      err => console.log(err)
+    );
+  }
+
+  ngOnInit() {
+  }
+
+  confirmDelete(content) {
+    this.modalService.open(content, {centered: true});
+  }
+
+  editComment() {
+    this.editing = !this.editing;
+  }
+
+  saveChanges() {
+    this.projectService.editComment(this.comment, this.projectId)
+        .subscribe(
+          status => console.log(status),
+          err => console.error(err.message),
+          () => this.editing = false
         );
-    }
+  }
 
-    ngOnInit() {
-    }
+  protected deleteComment(): void {
+    this.projectService.deleteComment(this.projectId, this.comment.id)
+        .subscribe(
+          () => {},
+          err => console.error(err.message),
+          () => this.commentList.refreshCommentList())
+        .add(this.modalService.dismissAll());
 
-    confirmDelete(content) {
-        this.modalService.open(content, {centered: true});
-    }
+  }
 
-    editComment() {
-        this.editing = !this.editing;
-    }
-
-    saveChanges() {
-        this.projectService.editComment(this.comment, this.projectId)
-            .subscribe(
-                status => console.log(status),
-                err => console.error(err.message),
-                () => this.editing = false
-            );
-    }
-
-    protected deleteComment(): void {
-        this.projectService.deleteComment(this.projectId, this.comment.id)
-            .subscribe(
-                () => {},
-                err => console.error(err.message),
-                () => this.commentList.refreshCommentList())
-            .add(this.modalService.dismissAll());
-
-    }
-
-    protected cancel() {
-      this.editing = false;
-    }
+  protected cancel() {
+    this.editing = false;
+  }
 }

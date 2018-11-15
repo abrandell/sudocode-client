@@ -1,5 +1,6 @@
 //$dark: rgb(25, 23, 22);
 //@import url('https://fonts.googleapis.com/css?family=Montserrat|Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Source+Code+Pro');
 
 $dark: rgb(28, 35, 49);
 $background-light: rgba(255, 251, 254, 1);
@@ -8,10 +9,11 @@ $primary: $blue;
 $primary-hover: rgba(99, 159, 171, 1);
 $light-gray-line-border: #e6e6e6 2px solid;
 $bg-gray: #e6e6e6;
-$font-family-primary: Montserrat, sans-serif;
-$font-family-secondary: "Valera Round", sans-serif;
+$font-family-primary: 'Montserrat', sans-serif;
+$font-family-secondary: 'Open Sans', sans-serif;
 $font-size-base: 1rem;
-$font-family-base: "Valera Round", sans-serif;
+$font-family-base: 'Open Sans', sans-serif;
+$font-family-code: 'Source Code Pro', monospace;
 
 $colors: (
   primary: $primary,

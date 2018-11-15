@@ -40,8 +40,9 @@
 
     .title {
       color: $dark;
-      font-family: "Montserrat", sans-serif;
+      font-family: $font-family-primary;
       font-weight: 500;
+      font-size: 2.2rem;
 
       &:hover {
         color: $primary-hover;
@@ -58,6 +59,7 @@
         word-wrap: break-spaces;
         white-space: pre-wrap;
         padding-bottom: 2rem;
+        font-family: $font-family-secondary;
 
       }
 
