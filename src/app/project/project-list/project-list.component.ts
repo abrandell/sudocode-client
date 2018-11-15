@@ -40,6 +40,7 @@ export class ProjectListComponent implements OnInit {
 
   projectPage: ProjectPage;
   public page: number;
+  orderBy: string;
 
   private order: SortOrder;
   private filteredQuery: ProjectCreation;
@@ -80,7 +81,7 @@ export class ProjectListComponent implements OnInit {
       this.filteredQuery = example;
     }
 
-    this.projectService.searchProjects(page, this.order, example)
+    this.projectService.searchProjects(page, this.order, this.orderBy, example)
       .subscribe(
         data => this.projectPage = data,
         err => console.error(err.message)

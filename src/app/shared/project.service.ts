@@ -30,7 +30,7 @@ export class ProjectService {
    */
   public fetchAll(page: number, sortOrder: string): Observable<ProjectPage> {
     return this.http.get<ProjectPage>(
-      `${this.URL}?page=${page}&sort=datePosted,${sortOrder}`
+      `${this.URL}?page=${page}&sort=rating,${sortOrder}`
     );
   }
 
@@ -68,7 +68,7 @@ export class ProjectService {
   }
 
   public editComment(comment: IComment, projectId: number) {
-    return this.http.put<IComment>(`${this.URL}/${projectId}/comments/${comment.id}`, comment)
+    return this.http.put<IComment>(`${this.URL}/${projectId}/comments/${comment.id}`, comment);
   }
 
   public updateProject(project: IProject): Observable<IProject> {
@@ -81,14 +81,14 @@ export class ProjectService {
 
 
   // TODO remove the hardcoded sort
-  public searchProjects(page: number, sortOrder: string, values: ProjectCreation): Observable<ProjectPage> {
+  public searchProjects(page: number, sortOrder: string, sort: string, values: ProjectCreation): Observable<ProjectPage> {
     return this.http.get<ProjectPage>(
       this.URL
       + `?title=${values.title}`
       + `&difficulty=${values.difficulty}`
       + `&description=${values.description}`
       + `&page=${page}`
-      + `&sort=datePosted,${sortOrder}`
+      + `&sort=${sort},${sortOrder}`
     );
   }
 
@@ -104,7 +104,7 @@ export class ProjectService {
         return "#2a628e";
       }
       case Difficulty.ADVANCED: {
-        return "#aa7636";
+        return "#aa7308";
       }
       case Difficulty.EXPERT: {
         return "#aa1828";

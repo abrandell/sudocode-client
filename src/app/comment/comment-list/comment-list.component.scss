@@ -8,9 +8,9 @@
   .comment-list-metadata {
     display: grid;
     grid-template-columns: repeat(3, auto);
+    justify-items: center;
 
     .result-amount {
-      justify-self: start;
     }
 
     .sort-order {
@@ -18,12 +18,10 @@
       width: 6rem;
       height: 1.3rem;
       padding: 0;
-      justify-self: center;
     }
 
     .pagination-sm {
       display: flex;
-      justify-content: end;
     }
   }
 
