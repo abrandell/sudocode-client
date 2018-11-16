@@ -3,8 +3,16 @@
 .page-content {
 
   .container-fluid {
+    @media (min-width: 850px) {
+        display: grid;
+        grid-template-columns: 30% auto;
+    }
+
     .project-list {
       padding-left: 0;
+      @media (min-width: 850px) {
+        border-left: 1px solid lightgray;
+      }
     }
 
     .list-info {
@@ -26,8 +34,6 @@
 
       .post-button {
       }
-
-
 
       .pagination-sm {
         display: flex;

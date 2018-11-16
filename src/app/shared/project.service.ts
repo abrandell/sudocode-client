@@ -88,7 +88,7 @@ export class ProjectService {
       + `&difficulty=${values.difficulty}`
       + `&description=${values.description}`
       + `&page=${page}`
-      + `&sort=${sort},${sortOrder}`
+      + `&sort=rating,${sortOrder}` /*TODO: Fix me*/
     );
   }
 

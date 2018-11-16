@@ -21,10 +21,6 @@ export class ProjectSearchComponent {
 
   constructor(private list: ProjectListComponent) { }
 
-  get diagnostic() {
-    return JSON.stringify(this.searchedQuery);
-  }
-
   filterProjects(): void {
     this.list.filterByExample(0, this.searchedQuery);
 

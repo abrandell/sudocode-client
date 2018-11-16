@@ -1,8 +1,8 @@
-<div class="container-fluid ml-auto page-content" >
+<div class="container-fluid ml-auto page-content">
   <app-header [headerText]="'Find and share ideas for side projects.'"></app-header>
   <div class="container-fluid">
 
-
+    <app-project-search class="ml-5"></app-project-search>
 
     <ul class="project-list" *ngIf="projectPage" [@listStagger]="projectPage">
       <div class="list-info container py-0">
@@ -12,10 +12,10 @@
                 (click)="postForm()">
           Post a project
         </button>
-          <select id="order-select" title="order">
-            <option value="new" (click)="ngOnInit()">newest</option>
-            <option value="old" (click)="sortByOldest()">oldest</option>
-          </select>
+        <select id="order-select" title="order">
+          <option value="new" (click)="ngOnInit()">newest</option>
+          <option value="old" (click)="sortByOldest()">oldest</option>
+        </select>
         <ul class="pagination-sm">
           <li [class]="projectPage?.first ? 'page-item disabled' : 'page-item'">
             <a class="page-link" (click)="previousPage()">prev</a>

@@ -1,20 +1,12 @@
 @import "~src/variables";
 
-
-$translucent-form-overlay-max-width: 300px;
-
 .translucent-form-overlay {
-  max-width: $translucent-form-overlay-max-width;
+  max-width: 300px;
   position: relative;
-  border-top: $dark 5px solid;
-  padding: 1em 1em 1em;
   margin-right: 5rem;
 
-  @media screen and (max-width: 850px){
+  @media screen and (max-width: 850px) {
     display: none;
-  }
-  .columns.row {
-    display: inline-grid;
   }
 
   h4, label {
@@ -23,19 +15,20 @@ $translucent-form-overlay-max-width: 300px;
   input, select {
     color: gray;
     background-color: white;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
   }
 
   select {
     background-position: right;
   }
+
   input::placeholder {
     color: gray;
   }
 
-  .input-elevated{
+  .input-elevated {
     line-height: 1.5;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
     border-radius: 5px;
   }
 }
