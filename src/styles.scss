@@ -15,7 +15,7 @@ html {
     height: 100%;
     padding: 0;
     margin: 0;
-    font: 500 1.2rem/1.5 "Valera Round", sans-serif;
+    font: 500 1.2rem/1.5 $font-family-secondary;
     background-color: color(bg-gray);
 
     p {
@@ -23,7 +23,7 @@ html {
     }
 
     nav {
-      font-family: Montserrat, sans-serif;
+      font-family: $font-family-primary;
     }
 
     #content {
@@ -158,3 +158,6 @@ li {
 }
 
 
+a {
+  text-decoration: none;
+}

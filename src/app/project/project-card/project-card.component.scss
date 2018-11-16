@@ -41,8 +41,8 @@
     .title {
       color: $dark;
       font-family: $font-family-primary;
-      font-weight: 500;
-      font-size: 2.2rem;
+      font-weight: 700;
+      font-size: 1.4rem;
 
       &:hover {
         color: $primary-hover;
@@ -51,6 +51,7 @@
     }
 
     #preview-content {
+      margin-top: 1rem;
       margin-left: 1.2rem;
 
       #description {

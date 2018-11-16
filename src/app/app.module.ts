@@ -58,7 +58,7 @@ export class XhrInterceptor implements HttpInterceptor {
     ProjectEditComponent,
     CommentListComponent,
     EllipsisPipe,
-    SidenavComponent
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,

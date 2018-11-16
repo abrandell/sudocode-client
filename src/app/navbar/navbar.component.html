@@ -1,6 +1,7 @@
+
 <nav class="navbar navbar-expand-sm navbar-dark">
   <div id="inner-nav" class="container max-width-wrapper">
-    <a class="navbar-brand" routerLink="/">sudoCode();</a>
+    <a class="navbar-brand" routerLink="/">(sudoCode);</a>
     <button (click)="collapsed = !collapsed" class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,25 +13,25 @@
           <a class="nav-item nav-link" routerLinkActive="active"
              routerLink="projects">Projects</a>
           <a class="nav-item nav-link" routerLinkActive="active"
-             routerLink="users">Users</a>
+          routerLink="users">Users</a>
           <a class="nav-item nav-link" routerLinkActive="active"
               routerLink="about">About</a>
         </ul>
       </div>
     </div>
-      <div ngbDropdown placement="bottom-center" class="d-inline-block flex-sm-column">
-        <div id="user-info">
+    <div ngbDropdown placement="bottom-center" class="d-inline-block flex-sm-column">
+      <div id="user-info">
         <a *ngIf="auth.authenticated" ngbDropdownToggle>
           <span id="login">{{auth.currentUser.login}}</span>
           <img src="{{auth.currentUser.avatar_url}}">
         </a>
-        </div>
-        <button *ngIf="!auth?.authenticated"  class="btn btn-sm rounded" (click)="login()">
-          <i class="fa fa-github fa-1x"></i> Login with Github</button>
-        <div *ngIf="auth.authenticated" ngbDropdownMenu id="user-options" aria-labelledby="user-options">
-          <button class="dropdown-item" (click)="logout()">Logout</button>
-          <button class="dropdown-item">Settings</button>
-        </div>
       </div>
+      <button *ngIf="!auth?.authenticated"  class="btn btn-sm rounded" (click)="login()">
+          <i class="fa fa-github fa-1x"></i> Login with Github</button>
+      <div *ngIf="auth.authenticated" ngbDropdownMenu id="user-options" aria-labelledby="user-options">
+        <button class="dropdown-item" (click)="logout()">Logout</button>
+        <button class="dropdown-item">Settings</button>
+      </div>
+    </div>
   </div>
 </nav>

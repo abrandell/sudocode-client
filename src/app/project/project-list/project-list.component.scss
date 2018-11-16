@@ -20,6 +20,10 @@
       grid-template-columns: repeat(4, auto);
       margin-bottom: 1rem;
       justify-items: center;
+      @media (max-width: 440px) {
+        display: none;
+        margin-bottom: 0;
+      }
 
       select {
         margin: 0;
