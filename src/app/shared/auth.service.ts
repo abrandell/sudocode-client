@@ -16,7 +16,7 @@ export class AuthService {
 
   public authenticate() {
     if (!this.authenticated) {
-      this.http.get<any>('/api/users/me').subscribe(data => {
+      this.http.get<any>('/api/auth/user').subscribe(data => {
           this.authenticated = JSON.stringify(data).includes('login');
           if (this.authenticated) {
             this.currentUser = data;
@@ -29,6 +29,6 @@ export class AuthService {
   public logout(): Observable<any> {
     this.currentUser = null;
     this.authenticated = false;
-    return this.http.post('/api/users/logout', {});
+    return this.http.post('/api/auth/logout', {});
   }
 }

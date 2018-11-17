@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {IProject} from '../project/IProject';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ProjectPage} from './project-page';
 import {ProjectCreation} from '../project/project-search/project-creation';
 import {CommentPage} from './comment-page';
@@ -60,7 +60,7 @@ export class ProjectService {
   public deleteComment(projectId: number, commentId: number): Observable<void> {
     return this.http.delete<void>(
       `${this.URL}/${projectId}/comments/${commentId}`
-    ).pipe();
+    );
   }
 
   public deleteProject(projectId: number): Observable<void> {
