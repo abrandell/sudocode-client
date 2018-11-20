@@ -36,7 +36,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   isAuthor(): boolean {
-    if (this.auth.currentUser == null || this.project == null) {
+    if (this.auth.currentUser === undefined || this.project === undefined) {
       return false;
     }
 

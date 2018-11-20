@@ -25,7 +25,7 @@ import { ProjectEditComponent } from './project/project-edit/project-edit.compon
 import { CommentListComponent } from './comment/comment-list/comment-list.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {EllipsisPipe} from "./shared/pipes/ellipsis.pipe";
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @Injectable()
@@ -58,7 +58,7 @@ export class XhrInterceptor implements HttpInterceptor {
     ProjectEditComponent,
     CommentListComponent,
     EllipsisPipe,
-    SidenavComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

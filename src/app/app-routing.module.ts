@@ -5,6 +5,8 @@ import {ProjectPostComponent} from './project/project-post/project-post.componen
 import {AboutComponent} from './about/about.component';
 import {ProjectDetailComponent} from './project/project-detail/project-detail.component';
 import {UserListComponent} from './user/user-list/user-list.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {AuthGuard} from './shared/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,7 +22,8 @@ const routes: Routes = [
   {
     path: 'projects/post',
     component: ProjectPostComponent,
-    data: {title: 'New Project'}
+    data: {title: 'New Project'},
+    canActivate: [AuthGuard]
   },
   {
     path: 'projects/:id',
@@ -39,7 +42,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    component: NotFoundComponent,
+    data: {title: '404'}
   }
 ];
 
