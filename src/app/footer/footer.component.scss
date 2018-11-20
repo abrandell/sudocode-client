@@ -17,8 +17,13 @@ footer {
       //grid-template-columns: repeat(2, auto);
       font-size: 1rem;
       text-align: center;
-      padding-top: 1rem;
       font-family: $font-family-secondary;
+      a {
+          color: $background-light;
+        &:hover {
+          color: $primary-hover;
+        }
+      }
     }
 
     .logos {
@@ -39,4 +44,5 @@ footer {
       }
     }
   }
+
 }

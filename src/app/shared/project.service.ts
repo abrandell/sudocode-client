@@ -11,6 +11,8 @@ import {Difficulty} from './difficulty';
 import {SanitizedHtmlPipe} from "./pipes/sanitized-html.pipe";
 import {sanitizeHtml} from "@angular/core/src/sanitization/sanitization";
 import {Vote} from "./vote.enum";
+import {SortOrder} from './sort-order';
+import {OrderBy} from './order-by.enum';
 
 
 @Injectable({
@@ -26,11 +28,12 @@ export class ProjectService {
   /**
    * Returns a ProjectPage of all projects in the backend DB with no filtering other than the required page & order.
    * @param page Page number. Starts at 0.
+   * @param orderBy The property to order by. ie. ['rating', datePosted, etc']
    * @param sortOrder Order of the projects. Must either be 'desc' or 'asc'.
    */
-  public fetchAll(page: number, sortOrder: string): Observable<ProjectPage> {
+  public fetchAll(page: number, orderBy: OrderBy, sortOrder: SortOrder): Observable<ProjectPage> {
     return this.http.get<ProjectPage>(
-      `${this.URL}?page=${page}&sort=rating,${sortOrder}`
+      `${this.URL}?page=${page}&sort=${orderBy},${sortOrder}`
     );
   }
 
@@ -79,9 +82,7 @@ export class ProjectService {
     this.http.post(`${this.URL}/${projectId}/vote?dir=${vote}`, {}).subscribe(() => {});
   }
 
-
-  // TODO remove the hardcoded sort
-  public searchProjects(page: number, sortOrder: string, sort: string, values: ProjectCreation): Observable<ProjectPage> {
+  public searchProjects(page: number, orderBy: OrderBy, sortOrder: SortOrder, values: ProjectCreation): Observable<ProjectPage> {
     return this.http.get<ProjectPage>(
       this.URL
       + `?title=${values.title}`

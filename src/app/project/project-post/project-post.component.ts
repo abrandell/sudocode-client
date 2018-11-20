@@ -30,6 +30,10 @@ export class ProjectPostComponent implements OnDestroy {
   }
 
   public submit(): void {
+
+    this.model.title = this.model.title.trim();
+    this.model.description = this.model.description.trim();
+
     this.projectService.post(this.model)
         .subscribe(
           status => console.log(status),
@@ -45,6 +49,5 @@ export class ProjectPostComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.submitted = false;
   }
-
 
 }

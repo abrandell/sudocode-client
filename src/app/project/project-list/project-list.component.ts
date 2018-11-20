@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {ProjectPage} from '../../shared/project-page';
 import {ProjectService} from '../../shared/project.service';
@@ -6,6 +6,7 @@ import {ProjectCreation} from '../project-search/project-creation';
 import {AuthService} from '../../shared/auth.service';
 import {Router} from '@angular/router';
 import {SortOrder} from '../../shared/sort-order';
+import {OrderBy} from '../../shared/order-by.enum';
 
 @Component({
   selector: 'app-project-list',
@@ -40,40 +41,38 @@ export class ProjectListComponent implements OnInit {
 
   projectPage: ProjectPage;
   public page: number;
-  orderBy: string;
 
   private order: SortOrder;
+  private orderBy: OrderBy;
   private filteredQuery: ProjectCreation;
+
+  isDataLoaded = false;
 
   ngOnInit() {
     this.order = SortOrder.DESC;
+    this.orderBy = OrderBy.RATING;
     this.page = 0;
-    this.fetchAll(this.page, this.order);
+    this.fetchAll(this.page, this.orderBy, this.order);
     if (this.projectPage) {
       this.page = this.projectPage.number;
     }
   }
 
-  /**
-   * Returns a ProjectPage of all projects in the backend DB with no filtering
-   * other than the required page & order.
-   * @param page Page number. Starts at 0.
-   * @param order Order of the projects. Must be a SortOrder enum.
-   */
-  fetchAll(page: number, order: string): void {
-    this.projectService.fetchAll(page, order)
+
+  fetchAll(page: number, order: OrderBy, sort: SortOrder): void {
+    this.projectService.fetchAll(page, order, sort)
       .subscribe(
         data => this.projectPage = data,
         err => console.error(err.message)
-      );
+      ).add(() => this.isDataLoaded = true);
   }
 
   nextPage(): void {
-    this.fetchAll(++this.projectPage.number, this.order);
+    this.fetchAll(++this.projectPage.number, this.orderBy, this.order);
   }
 
   previousPage(): void {
-    this.fetchAll(--this.projectPage.number, this.order);
+    this.fetchAll(--this.projectPage.number, this.orderBy, this.order);
   }
 
   filterByExample(page: number, example: ProjectCreation): void {
@@ -81,7 +80,7 @@ export class ProjectListComponent implements OnInit {
       this.filteredQuery = example;
     }
 
-    this.projectService.searchProjects(page, this.order, this.orderBy, example)
+    this.projectService.searchProjects(page, this.orderBy, this.order, example)
       .subscribe(
         data => this.projectPage = data,
         err => console.error(err.message)
@@ -90,12 +89,19 @@ export class ProjectListComponent implements OnInit {
 
   postForm() {
     this.router.navigate(['projects', 'post'])
-      .catch((err: Error) => (console.error(err.message)))
+      .catch((err: Error) => (console.error(err.message)));
   }
 
   sortByOldest(): void {
     this.order = SortOrder.ASC;
-    this.fetchAll(0, this.order);
+    this.orderBy = OrderBy.DATE;
+    this.fetchAll(0, this.orderBy, this.order);
+  }
+
+  sortByNewest(): void {
+    this.order = SortOrder.DESC;
+    this.orderBy = OrderBy.DATE;
+    this.fetchAll(0, this.orderBy, this.order);
   }
 
 }
