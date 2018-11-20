@@ -5,35 +5,8 @@
   grid-template-columns: 2rem auto;
   margin-top: 4rem;
 
-  #vote {
-    display: grid;
-    grid-template-rows: repeat(3, 2rem);
-    margin-top: .5rem;
-    color: lightgray;
-    justify-content: center;
 
-    .vote-button {
-      background-color: transparent;
-      border: none;
-      color: inherit;
-      outline: none;
 
-      &:not(:disabled) {
-        cursor: pointer;
-
-        &:hover {
-          color: $primary-hover;
-        }
-      }
-    }
-
-    #upvote-btn{
-    }
-
-    #upvote-count {
-      justify-self: center !important;
-    }
-  }
 
   #project-card {
     border-radius: 5px;

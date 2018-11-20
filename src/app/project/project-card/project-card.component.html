@@ -1,10 +1,6 @@
 <div class="project-card-wrapper" style="margin-right: 2rem; margin-left: 2rem;">
 
-  <div class="container " id="vote">
-    <button [disabled]="!auth.authenticated" id="upvote-btn" (click)="upVote()" class="vote-button fa fa-arrow-up fa-1x"></button>
-    <div id="upvote-count">{{project?.rating}}</div>
-    <button [disabled]="!auth.authenticated" id="downvote-btn" (click)="downVote()" class="vote-button fa fa-arrow-down fa-1x"></button>
-  </div>
+  <app-vote [project]="project"></app-vote>
 
   <div id="project-card" class="container">
     <h4><a class="title" (click)="getDetails()">{{project?.title}}</a>

@@ -1,63 +1,64 @@
 <div class="container-fluid max-width-wrapper page-content">
   <app-header [headerText]="project?.title || 'Project Details'"></app-header>
 
+  <div id="details-container" class="container-fluid">
+    <app-vote [project]="project"></app-vote>
+    <div class="container-fluid details-page">
+      <div id="project-details" class="container">
 
-
-
-
-  <div class="container-fluid details-page">
-    <div id="project-details" class="container">
-
-      <div id="details-header" >
+        <div id="details-header">
         <span class="difficulty"
               [style.color]="projectService.setColor(project?.difficulty)">[{{project?.difficulty | uppercase}}]</span>
-        <span class="date"><i class="fa fa-calendar-o"></i>
-          {{project?.date_posted | date: 'short' }}
+          <span class="date"><i class="fa fa-calendar-o"></i>
+            {{project?.date_posted | date: 'short' }}
         </span>
 
-        <div class="metadata">
-        <span id="user-info" class="container">
+          <div class="metadata">
+          <span id="user-info" class="container">
           <span id="submitted-by">submitted by:  </span>
           <span class="author-login">{{project?.author?.login}}</span>
         </span>
+
+          </div>
+        </div>
+
+        <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
+
+        <div *ngIf="!editing" class="project-description container">
+          <article class="text text-body" *ngIf="!editing">{{project?.description}}</article>
+        </div>
+        <div class="author-buttons" *ngIf="isAuthor() && !editing" id="options">
+          <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">
+            <i class="fa fa-pencil"></i> Edit
+          </button>
+
+          <!-- Delete project modal -->
+          <ng-template #projectDeleteModal let-modal>
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-title">Confirm Deletion</h5>
+            </div>
+            <div class="modal-body" style="font-size: 1rem">
+              <p>Are you sure you want to delete this project? <br>
+                <br>
+                <em>This <strong>cannot</strong> be undone</em>.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-outline-secondary" (click)="modal.close()">Cancel</button>
+              <button type="button" class="btn btn-sm btn-danger" (click)="deleteProject()"><i
+                class="fa fa-trash-o"></i>
+                Delete
+              </button>
+            </div>
+          </ng-template>
+          <button id="delete"
+                  class="btn btn-sm btn-danger"
+                  (click)="confirmDelete(projectDeleteModal)"><i class="fa fa-trash-o"></i> Delete
+          </button>
+          <!-- end of modal -->
+
         </div>
       </div>
-
-      <app-project-edit *ngIf="editing" [project]="project"></app-project-edit>
-
-      <div *ngIf="!editing" class="project-description container">
-        <article class="text text-body" *ngIf="!editing">{{project?.description}}</article>
-      </div>
-      <div class="author-buttons" *ngIf="isAuthor() && !editing" id="options">
-        <button id="edit" (click)="edit()" class="btn btn-sm btn-outline-secondary">
-          <i class="fa fa-pencil"></i> Edit
-        </button>
-
-        <!-- Delete project modal -->
-        <ng-template #projectDeleteModal let-modal>
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal-title">Confirm Deletion</h5>
-          </div>
-          <div class="modal-body" style="font-size: 1rem">
-            <p>Are you sure you want to delete this project? <br>
-              <br>
-              <em>This <strong>cannot</strong> be undone</em>.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="modal.close()">Cancel</button>
-            <button type="button" class="btn btn-sm btn-danger" (click)="deleteProject()"><i class="fa fa-trash-o"></i>
-              Delete
-            </button>
-          </div>
-        </ng-template>
-        <button id="delete"
-                class="btn btn-sm btn-danger"
-                (click)="confirmDelete(projectDeleteModal)"><i class="fa fa-trash-o"></i> Delete
-        </button>
-        <!-- end of modal -->
-
     </div>
-      <app-comment-list></app-comment-list>
   </div>
-</div>
+  <app-comment-list></app-comment-list>
 </div>

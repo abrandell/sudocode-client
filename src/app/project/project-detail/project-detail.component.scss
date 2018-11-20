@@ -1,7 +1,18 @@
 @import "~src/_variables.scss";
 
+#details-container {
+  display: grid;
+  grid-template-columns: 2rem auto;
+
+  app-vote {
+    margin-left: 5rem;
+  }
+
+}
+
 .details-page {
 max-width: 90%;
+
 
   #project-details {
 

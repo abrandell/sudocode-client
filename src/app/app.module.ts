@@ -26,6 +26,7 @@ import { CommentListComponent } from './comment/comment-list/comment-list.compon
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {EllipsisPipe} from "./shared/pipes/ellipsis.pipe";
 import { NotFoundComponent } from './not-found/not-found.component';
+import { VoteComponent } from './shared/vote/vote.component';
 
 
 @Injectable()
@@ -59,6 +60,7 @@ export class XhrInterceptor implements HttpInterceptor {
     CommentListComponent,
     EllipsisPipe,
     NotFoundComponent,
+    VoteComponent,
   ],
   imports: [
     BrowserModule,

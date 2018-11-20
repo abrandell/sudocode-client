@@ -1,16 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IProject} from '../IProject';
-import {AuthService} from '../../shared/auth.service';
+import {Component, Input, NgModule, OnInit} from '@angular/core';
+import {IProject} from '../../project/IProject';
+import {ProjectService} from '../project.service';
+import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {ProjectService} from '../../shared/project.service';
-import {Vote} from "../../shared/vote.enum";
+import {Vote} from '../vote.enum';
 
 @Component({
-  selector: 'app-project-card',
-  templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss']
+  selector: 'app-vote',
+  templateUrl: './vote.component.html',
+  styleUrls: ['./vote.component.scss']
 })
-export class ProjectCardComponent implements OnInit {
+export class VoteComponent implements OnInit {
 
   @Input() project: IProject;
   upvoted: boolean = false;
@@ -22,12 +22,7 @@ export class ProjectCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected getDetails(): void {
-    this.router.navigate(['projects', this.project.id])
-      .catch((err: Error) => console.error(err.message));
-  }
-
-/*  upVote() {
+  upVote() {
     this.upvoted = !this.upvoted;
     if (this.upvoted) {
       this.project.rating++;
@@ -49,6 +44,6 @@ export class ProjectCardComponent implements OnInit {
     } else {
       this.unVote();
     }
-  }*/
+  }
 
 }
