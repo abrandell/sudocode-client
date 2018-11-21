@@ -1,8 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
