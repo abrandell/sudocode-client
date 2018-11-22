@@ -16,7 +16,7 @@ export class VoteComponent implements OnInit {
   upvoted: boolean = false;
   downvoted: boolean = false;
 
-  constructor(protected service: ProjectService, protected auth: AuthService, private router: Router) {
+  constructor(protected service: ProjectService, protected auth: AuthService) {
   }
 
   ngOnInit() {
