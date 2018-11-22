@@ -1,5 +1,5 @@
 <div class="container " id="vote">
-  <button [disabled]="!auth.authenticated" id="upvote-btn" (click)="upVote()" class="vote-button fa fa-arrow-up fa-1x"></button>
+  <button [disabled]="!auth.authenticated" id="upvote-btn" (click)="upVote()" class="vote-button fa fa-arrow-up"></button>
   <div id="upvote-count">{{project?.rating}}</div>
-  <button [disabled]="!auth.authenticated" id="downvote-btn" (click)="downVote()" class="vote-button fa fa-arrow-down fa-1x"></button>
+  <button [disabled]="!auth.authenticated" id="downvote-btn" (click)="downVote()" class="vote-button fa fa-arrow-down"></button>
 </div>
