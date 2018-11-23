@@ -26,7 +26,7 @@
           <img src="{{auth.currentUser.avatar_url}}">
         </a>
       </div>
-      <button *ngIf="!auth?.authenticated"  class="btn btn-sm rounded" (click)="login()">
+      <button *ngIf="!auth?.authenticated"  class="btn btn-sm btn-primary" (click)="login()">
           <i class="fa fa-github fa-1x"></i> Login with Github</button>
       <div *ngIf="auth.authenticated" ngbDropdownMenu id="user-options" aria-labelledby="user-options">
         <button class="dropdown-item" (click)="logout()">Logout</button>
