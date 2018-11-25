@@ -18,11 +18,11 @@ import {takeUntil} from "rxjs/operators";
 export class ProjectDetailComponent implements OnInit {
 
   public editing: boolean;
-  protected project: IProject;
-  protected projectId: number;
+  project: IProject;
+  projectId: number;
   private destroy = new Subject();
 
-  constructor(protected projectService: ProjectService,
+  constructor(public projectService: ProjectService,
               private route: ActivatedRoute,
               protected auth: AuthService,
               private router: Router, private projectList: ProjectListComponent,

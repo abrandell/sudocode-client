@@ -16,39 +16,14 @@ export class ProjectCardComponent implements OnInit {
   upvoted: boolean = false;
   downvoted: boolean = false;
 
-  constructor(protected service: ProjectService, protected auth: AuthService, private router: Router) {
+  constructor(public service: ProjectService, private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  protected getDetails(): void {
+  getDetails(): void {
     this.router.navigate(['projects', this.project.id])
       .catch((err: Error) => console.error(err.message));
   }
-
-/*  upVote() {
-    this.upvoted = !this.upvoted;
-    if (this.upvoted) {
-      this.project.rating++;
-      this.service.voteOnProject(Vote.UPVOTE, this.project.id);
-    } else {
-      this.unVote();
-    }
-  }
-
-  unVote() {
-    this.service.voteOnProject(Vote.UNVOTE, this.project.id);
-  }
-
-  downVote() {
-    this.downvoted = !this.downvoted;
-    if (this.downvoted) {
-      this.project.rating--;
-      this.service.voteOnProject(Vote.DOWNVOTE, this.project.id);
-    } else {
-      this.unVote();
-    }
-  }*/
-
 }

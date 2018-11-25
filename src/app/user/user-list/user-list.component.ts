@@ -10,7 +10,7 @@ import {SortOrder} from '../../shared/sort-order';
 })
 export class UserListComponent implements OnInit {
 
-  protected users: UserPage;
+  users: UserPage;
   private pageNum: number;
   private order: SortOrder;
 

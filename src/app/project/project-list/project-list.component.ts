@@ -36,7 +36,7 @@ import {OrderBy} from '../../shared/order-by.enum';
 export class ProjectListComponent implements OnInit {
 
 
-  constructor(private projectService: ProjectService, protected auth: AuthService, private router: Router) {
+  constructor(private projectService: ProjectService, public auth: AuthService, private router: Router) {
   }
 
   projectPage: ProjectPage;

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy-conf.json",
-    "build": "ng build",
+    "build": "ng build ---prod",
     "postbuild": "npm run deploy",
     "predeploy": "rimraf ../server/src/main/resources/static && mkdirp ../server/src/main/resources/static",
     "deploy": "copyfiles -f dist/frontend/** ../server/src/main/resources/static",

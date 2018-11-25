@@ -8,7 +8,7 @@ import {AuthService} from '../shared/auth.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  protected collapsed = true;
+  collapsed = true;
 
   constructor(public auth: AuthService) {}
 

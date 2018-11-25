@@ -46,7 +46,7 @@ export class CommentPostComponent implements OnInit, OnDestroy {
   private projectId: number;
   private destroy = new Subject();
 
-  constructor(protected auth: AuthService,
+  constructor(public auth: AuthService,
               private projectService: ProjectService,
               private route: ActivatedRoute,
               private commentList: CommentListComponent,

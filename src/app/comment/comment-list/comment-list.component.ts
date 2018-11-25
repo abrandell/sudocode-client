@@ -37,9 +37,9 @@ export class CommentListComponent implements OnInit, OnDestroy {
 
   private destroy = new Subject();
 
-  protected comments: CommentPage;
-  protected pageNum: number;
-  protected projectId: number;
+  comments: CommentPage;
+  pageNum: number;
+  projectId: number;
   private order: SortOrder;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute) {
@@ -56,25 +56,25 @@ export class CommentListComponent implements OnInit, OnDestroy {
 
   }
 
-  protected sortByOldest(): void {
+  sortByOldest(): void {
     this.order = SortOrder.ASC;
     this.fetchComments();
   }
 
-  protected sortByNewest(): void {
+  sortByNewest(): void {
     this.order = SortOrder.DESC;
     this.fetchComments();
   }
 
 
-  protected nextCommentPage(): void {
+  nextCommentPage(): void {
     if (!this.comments.last) {
       this.pageNum++;
       this.fetchComments();
     }
   }
 
-  protected prevCommentPage(): void {
+  prevCommentPage(): void {
     if (!this.comments.first) {
       this.pageNum--;
       this.fetchComments();

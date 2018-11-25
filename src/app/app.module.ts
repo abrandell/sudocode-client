@@ -27,6 +27,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {EllipsisPipe} from "./shared/pipes/ellipsis.pipe";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { VoteComponent } from './shared/vote/vote.component';
+import {SanitizedHtmlPipe} from './shared/pipes/sanitized-html.pipe';
 
 
 @Injectable()
@@ -59,6 +60,7 @@ export class XhrInterceptor implements HttpInterceptor {
     ProjectEditComponent,
     CommentListComponent,
     EllipsisPipe,
+    SanitizedHtmlPipe,
     NotFoundComponent,
     VoteComponent,
   ],
