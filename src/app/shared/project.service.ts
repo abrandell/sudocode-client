@@ -8,8 +8,6 @@ import {CommentPage} from './comment-page';
 import {CommentCreation} from '../comment/comment-post/comment-creation';
 import {IComment} from './IComment';
 import {Difficulty} from './difficulty';
-import {SanitizedHtmlPipe} from "./pipes/sanitized-html.pipe";
-import {sanitizeHtml} from "@angular/core/src/sanitization/sanitization";
 import {Vote} from "./vote.enum";
 import {SortOrder} from './sort-order';
 import {OrderBy} from './order-by.enum';

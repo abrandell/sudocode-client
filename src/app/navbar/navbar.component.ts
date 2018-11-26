@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(public auth: AuthService) {}
 
   login() {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/github';
+    window.location.href = 'https://sudocode-app.herokuapp.com/oauth2/authorization/github';
   }
 
   ngOnInit(): void {
