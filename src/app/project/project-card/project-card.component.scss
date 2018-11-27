@@ -3,6 +3,13 @@
 .project-card-wrapper {
   display: grid;
   grid-template-columns: 2rem auto;
+  @media screen and (max-width: 360px) {
+    grid-template-columns: auto;
+
+    app-vote {
+      display: none;
+    }
+  }
   margin-top: 4rem;
 
 

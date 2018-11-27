@@ -22,7 +22,23 @@
       justify-items: center;
 
       @media (max-width: 440px) {
-        display: none;
+        grid-template-columns: repeat(2, auto);
+        .result-amount {
+          display: none;
+        }
+
+        .post-button {
+          justify-self: start;
+        }
+
+        select {
+          display: none;
+        }
+
+        .pagination-sm {
+          justify-self: end;
+        }
+
         margin-bottom: 0;
       }
 

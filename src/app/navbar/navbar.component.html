@@ -27,7 +27,7 @@
         </a>
       </div>
       <button *ngIf="!auth?.authenticated"  class="btn btn-sm btn-primary" (click)="login()">
-          <i class="fa fa-github fa-1x"></i> Login with Github</button>
+          <i class="fa fa-github"></i> Login</button>
       <div *ngIf="auth.authenticated" ngbDropdownMenu id="user-options" aria-labelledby="user-options">
         <button class="dropdown-item" (click)="logout()">Logout</button>
       </div>

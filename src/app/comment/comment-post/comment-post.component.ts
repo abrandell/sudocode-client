@@ -10,6 +10,7 @@ import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {IComment} from "../../shared/IComment";
+import {LoginUrl} from '../../shared/login-url.enum';
 
 @Component({
   selector: 'app-comment-post',
@@ -87,6 +88,10 @@ export class CommentPostComponent implements OnInit, OnDestroy {
 
       return invalid ? {'Not required length': text} : undefined;
     };
+  }
+
+  login() {
+    window.location.href = LoginUrl.HEROKU;
   }
 
   ngOnDestroy(): void {

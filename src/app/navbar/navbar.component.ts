@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
+import {LoginUrl} from '../shared/login-url.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(public auth: AuthService) {}
 
   login() {
-    window.location.href = 'https://sudocode-app.herokuapp.com/oauth2/authorization/github';
+    window.location.href = LoginUrl.HEROKU;
   }
 
   ngOnInit(): void {

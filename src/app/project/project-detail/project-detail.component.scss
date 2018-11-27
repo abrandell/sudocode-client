@@ -3,15 +3,26 @@
 #details-container {
   display: grid;
   grid-template-columns: 2rem auto;
+  @media screen and (max-width: 575px) {
+    grid-template-columns: auto;
+  }
 
   app-vote {
     margin-left: 5rem;
+    @media screen and (max-width: 575px) {
+      display: none;
+    }
   }
 
 }
 
 .details-page {
 max-width: 90%;
+  @media screen and (max-width: 575px) {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 
 
   #project-details {
@@ -93,3 +104,9 @@ max-width: 90%;
 
 }
 
+.project-description.container {
+  @media screen and (max-width: 575px) {
+    padding: 0;
+    margin: 0;
+  }
+}

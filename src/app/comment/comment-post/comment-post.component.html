@@ -3,7 +3,7 @@
   <label for="comment-body">
     <span *ngIf="auth.authenticated && commentPostForm.dirty">Share a comment</span>
     <span *ngIf="!auth.authenticated">
-    <a class="clickable" href="http://localhost:8080/oauth2/authorization/github">Log in to post a comment</a></span>
+    <a class="clickable" (click)="login()">Log in to post a comment</a></span>
   </label>
   <textarea type="text"
             class="form-control"
